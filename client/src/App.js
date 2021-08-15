@@ -1,9 +1,15 @@
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './App.css';
+import { Aside, Content } from './components'; 
 
 function App() {
   return (
-    <div className="App">
-      
+    <div className="app">
+      <Router>
+        <Aside />
+        <Content />
+      </Router>
     </div>
   );
 }
