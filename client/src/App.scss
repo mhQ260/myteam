@@ -16,10 +16,21 @@ font-family: 'Roboto', sans-serif;*/
         font-family: 'Roboto', sans-serif;
         width: 100vw;
         min-height: 100vh;
-        display: grid;
-        grid-template-areas: 
-        "aside main";
-        grid-template-columns: 14% 1fr;
-        grid-template-rows: 1fr;
+    }
+
+    .show {
+        display: block;
+
+    }
+
+    @media(min-width: 900px) {
+
+        .app {
+            display: grid;
+            grid-template-areas: 
+            "nav main";
+            grid-template-columns: 14% 1fr;
+            grid-template-rows: 1fr;
+        }   
     }
 }

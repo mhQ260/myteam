@@ -1,21 +1,26 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './Aside.scss';
-import Logo from '../../img/logo.svg';
+import Logo from '../../img/aside_logo.svg';
 
 const Aside = () => {
     return (
         <aside>
-            <div className="navigation">
-                <div className="navigation-el">Dashboard</div>
-                <div className="navigation-el">Projects</div>
-                <div className="navigation-el">Tasks</div>
-                <div className="navigation-el">Reports</div>
-                <div className="navigation-el">Manage</div>
-                <div className="navigation-el">Account</div>
-            </div>   
-            <div className="banner"><img src={Logo} alt="Logo" /></div>
+            <div className="aside-container">
+                <div className="aside-categories">
+                    <NavLink to="#" className="aside-link">Dashboard</NavLink>
+                    <NavLink to="#" className="aside-link">Projects</NavLink>
+                    <NavLink to="#" className="aside-link">Tasks</NavLink>
+                    <NavLink to="#" className="aside-link">Reports</NavLink>
+                    <NavLink to="#" className="aside-link">Manage</NavLink>
+                    <NavLink to="#" className="aside-link">Account</NavLink>
+                </div>
+                <div className="aside-banner">
+                    <img src={Logo} alt="Logo" />
+                </div>
+            </div>     
         </aside>
     )
 }
 
-export default Aside;
+export default Aside;  
