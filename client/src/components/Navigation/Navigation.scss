@@ -17,17 +17,6 @@ nav {
         margin-bottom: 5vh;
         padding: 20px;
         display: none;
-
-        .navigation-el {
-            font-size: 2rem;
-            line-height: 5rem;
-            text-transform: uppercase;
-            cursor: pointer;
-
-            &:hover {
-                color: #ff6897;
-            }
-        }
     }
 
     .menu-burger {
@@ -43,9 +32,26 @@ nav {
 
     @media(min-width: 900px) {
 
+        .navigation {
+            display: flex;
+            flex-direction: column;
+
+            & .navigation-el {
+                font-size: 2rem;
+                line-height: 5rem;
+                text-transform: uppercase;
+                cursor: pointer;
+    
+                &:hover {
+                    color: #ff6897;
+                }
+            }
+        }
+
         .banner {
             margin: 0 auto;
             height: 80px;
+            display: block;
     
             & img {
                 overflow: hidden;
