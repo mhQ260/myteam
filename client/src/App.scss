@@ -20,7 +20,24 @@ font-family: 'Roboto', sans-serif;*/
 
     .show {
         display: block;
+    }
 
+    .button {
+        display: block;
+        background: #ff6897;
+        text-align: center;
+        font-size: 1.4rem;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    .button-wide {
+        width: 80%;
+        height: 30px;
+        margin: 10px auto;
+        font-weight: bold;
+        letter-spacing: .6px;
     }
 
     @media(min-width: 900px) {
