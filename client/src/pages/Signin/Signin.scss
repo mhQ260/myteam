@@ -1,0 +1,54 @@
+.signin {
+    background-color: #23272e;
+    padding: 20px 10px;
+    height: calc(100vh - 50px);
+    width: 100vw;
+    color: #fff;
+    
+    & form {
+        height: 50%;
+        padding: 20px 30px;
+        border: 1px solid #777;
+        border-radius: 4px;
+
+        & h2 {
+            font-size: 2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        & ul {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: space-between;
+
+            & li {
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                margin: 10px auto;
+
+                & label {
+                    font-size: 1.2rem;
+                    margin-bottom: 3px;
+                }
+
+                & input {
+                    font-size: 1.2rem;
+                    padding: 2px 1px;
+
+                    &:focus {
+                        outline: 1px solid #ff6897;
+                    }
+                }
+
+                & .link-txt {
+                    margin: 0 auto;
+                    font-size: 1.2rem; 
+                    color: #fff;
+                }
+            }
+        }
+    }
+}
