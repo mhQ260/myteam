@@ -46,8 +46,15 @@ font-family: 'Roboto', sans-serif;*/
             display: grid;
             grid-template-areas: 
             "nav main";
-            grid-template-columns: 14% 1fr;
+            grid-template-columns: 16% 1fr;
             grid-template-rows: 1fr;
         }   
+    }
+
+    @media(min-width: 1200px) {
+
+        .app {
+            grid-template-columns: 14% 1fr;
+        }
     }
 }
