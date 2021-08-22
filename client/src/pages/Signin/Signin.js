@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signin } from '../../actions/user.action';
 import './Signin.scss';
+import Logo from '../../img/aside_logo.svg';
 
 const SigninPage = (props) => {
 
@@ -46,11 +47,10 @@ const SigninPage = (props) => {
                             <button type="submit" className="button button-wide">Log In</button>
                             <NavLink to="#" className="link-txt">Don't remember password?</NavLink>
                         </li>
-                        <li>
-                            
-                        </li>
                     </ul>
+                    <p>Not a member? Contact your IT department</p>
                 </form>
+                <div className="banner"><img src={Logo} alt="Logo" /></div>
         </div>
     )
 }
