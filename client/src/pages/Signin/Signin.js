@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { signin } from '../../actions/user.action';
 import './Signin.scss';
 
-const SigninPage = () => {
+const SigninPage = (props) => {
 
     const [login, setLogin] = useState('');
     const [password, setPassword] = useState('');
+    const userSignin = useSelector(state => state.userSignin);
+    const { loading, userInfo, error } = userSignin;
 
     const dispatch = useDispatch();
     useEffect(() => {
+        if(userInfo){
+           props.history.push("/");
+        }
 
         return () => {
             //
         }
-    }, [])
+    }, [userInfo]);
 
     const submitHandler = e => {
         e.preventDefault();
+        dispatch(signin(login, password));
     }
 
     return (
