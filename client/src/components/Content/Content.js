@@ -12,7 +12,7 @@ const Content = () => {
     return (
         <main>
            <div className="main-wrapper">
-                {userInfo ?
+                {!userInfo ?
                     <>
                         <Switch>
                             <Route path="/" exact component={DashboardPage} />
