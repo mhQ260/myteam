@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcrypt';
 
+const saltRounds = 10;
+
 const userSchema = new mongoose.Schema({
     login: { type: String, required: true, unique: true },
     email: { type: String, required: true, unique: true },
@@ -10,26 +12,20 @@ const userSchema = new mongoose.Schema({
     isAdmin: { type: Boolean, required: true, default: false }
 });
 
-userSchema.pre('save', hashPassword = (next) => {
-    if (!user.isModified('password')) return next();
+userSchema.pre('save', async function save(next) {
+    if (!this.isModified('password')) return next();
+    try {
+        const salt = await bcrypt.genSalt(saltRounds);
+        this.password = await bcrypt.hash(this.password, salt);
+        return next();
+    } catch (err) {
+        return next(err);
+    }
+});
 
-    bcrypt.genSalt(SALT_WORK_FACTOR, fun = (err, salt) => {
-        if (err) return next(err);
-
-        bcrypt.hash(user.password, salt, fun = (err, hash) => {
-            if(err) return next(err);
-            user.password = hash;
-            next();
-        })
-    })
-})
-
-userSchema.methods.comparePassword = fun = (candidatePassword, cb) => {
-    bcrypt.compare(candidatePassword, password, fun = (err, isMatch) => {
-        if (err) return cb(err);
-        cb(null, isMatch);
-    });
-};
+userSchema.methods.validatePassword = async function validatePassword(data) {
+    return bcrypt.compare(data, this.password);
+}
 
 const userModel = mongoose.model("User", userSchema);
 
