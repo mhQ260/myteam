@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import config from './config';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
+import userRoute from './routes/user.route';
 
 dotenv.config();
 const mongodbUrl = config.MONGODB_URL;
@@ -16,5 +17,7 @@ mongoose.connect(mongodbUrl, {
 const app = express();
 
 app.use(bodyParser.json());
+
+app.use('/api/users', userRoute);
 
 app.listen(5000, () => { console.log("Server is running at at http://localhost:5000") }) 
