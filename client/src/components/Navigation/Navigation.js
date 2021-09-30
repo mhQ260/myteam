@@ -17,6 +17,11 @@ const Navigation = () => {
 
     const dispatch = useDispatch();
 
+    const signoutHandler = () => {
+        //dispatch(signout());
+        window.location.reload(true);
+    }
+
     useEffect(() => {
         //
     }, []);
@@ -24,13 +29,13 @@ const Navigation = () => {
     return (
         <nav>
             <div className="navigation">
-                <div className="navigation-el">Dashboard</div>
-                <div className="navigation-el">Projects</div>
-                <div className="navigation-el">Tasks</div>
-                <div className="navigation-el">Reports</div>
-                <div className="navigation-el">Manage</div>
-                <div className="navigation-el">Account</div>
-                <div className="navigation-el">Sign Out</div>
+                <Link to="/" className="navigation-el">Dashboard</Link>
+                <Link to="/projects" className="navigation-el">Projects</Link>
+                <Link to="/tasks" className="navigation-el">Tasks</Link>
+                <Link to="/reports" className="navigation-el">Reports</Link>
+                <Link to="/manage" className="navigation-el">Manage</Link>
+                <Link to="/account" className="navigation-el">Account</Link>
+                <Link to="/" onClick={signoutHandler} className="navigation-el">Sign Out</Link>
             </div>   
             <div className="banner"><img src={Logo} alt="Logo" /></div>
             <div className="menu-burger">

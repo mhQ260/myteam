@@ -8,12 +8,12 @@ const Aside = () => {
         <aside>
             <div className="aside-container">
                 <div className="aside-categories">
-                    <NavLink to="#" className="aside-link">Dashboard</NavLink>
-                    <NavLink to="#" className="aside-link">Projects</NavLink>
-                    <NavLink to="#" className="aside-link">Tasks</NavLink>
-                    <NavLink to="#" className="aside-link">Reports</NavLink>
-                    <NavLink to="#" className="aside-link">Manage</NavLink>
-                    <NavLink to="#" className="aside-link">Account</NavLink>
+                    <NavLink to="/" className="aside-link">Dashboard</NavLink>
+                    <NavLink to="/projects" className="aside-link">Projects</NavLink>
+                    <NavLink to="/tasks" className="aside-link">Tasks</NavLink>
+                    <NavLink to="/reports" className="aside-link">Reports</NavLink>
+                    <NavLink to="/manage" className="aside-link">Manage</NavLink>
+                    <NavLink to="/account" className="aside-link">Account</NavLink>
                 </div>
                 <div className="aside-banner">
                     <img src={Logo} alt="Logo" />
