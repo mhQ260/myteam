@@ -9,7 +9,8 @@ const userSchema = new mongoose.Schema({
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    isAdmin: { type: Boolean, required: true, default: false }
+    isAdmin: { type: Boolean, required: true, default: false },
+    created_at: { type: Date, default: Date.now }
 });
 
 userSchema.pre('save', async function save(next) {
