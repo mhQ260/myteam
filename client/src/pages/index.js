@@ -5,3 +5,4 @@ export { default as ProjectsPage } from './Projects';
 export { default as ReportsPage } from './Reports';
 export { default as TasksPage } from './Tasks';
 export { default as SigninPage } from './Signin';
+export { default as UsersManagePage } from './UsersManage';
