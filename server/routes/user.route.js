@@ -1,6 +1,6 @@
 import express from 'express';
 import User from '../models/user.model';
-import { getToken, isAuth } from '../util';
+import { getToken, isAuth, isAdmin } from '../util';
 
 const router = express.Router();
 
@@ -49,6 +49,12 @@ router.get('/createadmin', async (req, res) => {
     } catch (error) {
         res.send({ message: error.message });
     }
+})
+
+router.get('/', async (req, res) => {
+    const users = await User.find({});
+    res.send(users);
+    console.log('users')
 })
 
 module.exports = router;
