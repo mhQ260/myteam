@@ -16,7 +16,7 @@ const Aside = () => {
                     <NavLink to="/account" className="aside-link">Account</NavLink>
                 </div>
                 <div className="aside-banner">
-                    <img src={Logo} alt="Logo" />
+                    MyTeam
                 </div>
             </div>     
         </aside>

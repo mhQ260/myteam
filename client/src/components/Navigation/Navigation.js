@@ -28,6 +28,7 @@ const Navigation = () => {
 
     return (
         <nav>
+            <div className="banner">MyTeam</div>
             <div className="navigation">
                 <Link to="/" className="navigation-el">Dashboard</Link>
                 <Link to="/projects" className="navigation-el">Projects</Link>
@@ -37,7 +38,6 @@ const Navigation = () => {
                 <Link to="/account" className="navigation-el">Account</Link>
                 <Link to="/" onClick={signoutHandler} className="navigation-el">Sign Out</Link>
             </div>   
-            <div className="banner"><img src={Logo} alt="Logo" /></div>
             <div className="menu-burger">
                 <i className="fa fa-bars" aria-hidden="true" onClick={toggleMenu}></i>
                 <i className="fa fa-times hidden" aria-hidden="true" onClick={toggleMenu}></i>    

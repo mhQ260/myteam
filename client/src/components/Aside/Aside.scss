@@ -2,8 +2,8 @@ aside {
     display: none;
     height: 100vh;
     width: 100vw;
-    background-color: #23272e;
-    color: white;
+    background-color: #234dce;
+    color: #fff;
     position: fixed;
     padding-bottom: 50px;
 
@@ -36,6 +36,9 @@ aside {
             display: flex;
             justify-content: center;
             align-items: center;
+            font-size: 3rem;
+            font-family: 'Permanent Marker', cursive;
+            font-weight: bold;
 
             
             & > img {

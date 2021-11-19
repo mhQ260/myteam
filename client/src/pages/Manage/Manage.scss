@@ -4,9 +4,15 @@
     align-items: center;
     padding: 1.8rem 2rem;
 
-    h1 {
-        font-size: 24px;
-        margin-bottom: 20px;
+    .manage-header {
+        width: 90%;
+        // display: flex;
+        // justify-content: left;
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
     }
 
     .manage-container {
@@ -21,7 +27,7 @@
             width: 220px;
             margin: 2rem 2rem;
             color: white;
-            background-color: #dd4675;
+            background-color: #3558c2;
             font-size: 16px;
             font-weight: bold;
             display: flex;
@@ -30,7 +36,7 @@
             align-items: center;
 
             &:hover {
-                background-color: #ff6897;
+                background-color: #4669d3;
             }
 
             & > i {
