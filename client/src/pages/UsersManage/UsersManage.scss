@@ -112,109 +112,106 @@
                 }
             }
         }
-    
-        @media(min-width: 900px) {
+    }
 
-            .manage-tools {
-                width: 84%;
-                margin: 25px 0;
+    @media(min-width: 900px) {
 
-                .search-container {
-                    
-                    form {
+        .manage-tools {
+            width: 84%;
+            margin: 25px 0;
 
-                        input {
-                            width: 200px;
-                            padding: 8px;
-                            font-size: 1.4rem;
-                        }
+            .search-container {
+                
+                form {
 
-                        button {
-                            width: 40px;
-                            padding: 8px;
-                            font-size: 1.4rem;
-                        }
-
-                        i {
-                            font-size: 1.6rem;
-                        }
+                    input {
+                        width: 200px;
+                        padding: 8px;
+                        font-size: 1.4rem;
                     }
-                }
 
-                .buttons-container {
-                    padding-right: 20px;
-        
+                    button {
+                        width: 40px;
+                        padding: 8px;
+                        font-size: 1.4rem;
+                    }
+
                     i {
-                        font-size: 34px;
+                        font-size: 1.6rem;
                     }
                 }
+            }
 
-                .manage-list {
-                    width: 84%;
+            .buttons-container {
+                padding-right: 20px;
+    
+                i {
+                    font-size: 34px;
+                }
+            }
 
-                    table {
+        }
 
-                        thead {
-                            font-size: 1.2rem;
-        
-                            th {
-                                padding: 4px 0;
-                            }
+            .manage-list {
+                width: 84%;
+
+                table {
+
+                    thead {
+                        font-size: 1.2rem;
+    
+                        th {
+                            padding: 4px 0;
                         }
+                    }
+    
+                    tbody {
+    
+                        td {
+                            padding: 4px 0;
+                            font-size: 1.2rem;
+    
+                            &:nth-child(n) {
+                                min-width: 100px;
+                            }
+    
+                            &:nth-child(1) {
+                                display: flex;
+                                height: 35px;
+                                width: 80px;
+                                align-items: center;
+                                justify-content: center;
+                            }
+    
+                            &:nth-child(2) {
+                                width: 20%;
+                                height: 35px;
         
-                        tbody {
-        
-                            td {
-                                padding: 4px 0;
-                                font-size: 1.2rem;
-        
-                                &:nth-child(n) {
-                                    min-width: 100px;
-                                }
-        
-                                &:nth-child(1) {
-                                    display: flex;
-                                    height: 35px;
-                                    width: 80px;
-                                    align-items: center;
-                                    justify-content: center;
+                                a {
+                                    font-size: 1.2rem;
+                                    text-transform: uppercase;
                                 }
         
                                 &:nth-child(2) {
-                                    width: 20%;
-                                    height: 35px;
-            
-                                    a {
-                                        font-size: 1.2rem;
-                                        text-transform: uppercase;
-                                    }
-            
-                                    &:nth-child(2) {
-                                        font-size: 1.2rem;
-                                    }
-            
+                                    font-size: 1.2rem;
                                 }
         
-                                &:nth-child(3) {
-                                    width: 15%;
-                                }
-            
-                                i {
-                                    font-size: 1.8rem;
-                                }
-            
-                                &:nth-child(6) {
-                                    width: 30%;
-                                }
+                            }
+    
+                            &:nth-child(3) {
+                                width: 15%;
+                            }
+        
+                            i {
+                                font-size: 1.8rem;
+                            }
+        
+                            &:nth-child(6) {
+                                width: 30%;
                             }
                         }
                     }
                 }
-                
             }
-
-            
-        }
-    
     }
 }
