@@ -1,37 +1,9 @@
 import express from 'express';
 import User from '../models/user.model';
 import { getToken, isAuth, isAdmin } from '../util';
+import bcrypt from 'bcrypt';
 
 const router = express.Router();
-
-router.post('/create', async (req, res) => {
-    
-    const user = new User({
-        login: req.body.login,
-        email: req.body.email,
-        password: req.body.password,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
-    });
-
-    const newUser = await user.save();
-
-    if(newUser){
-        res.send({
-            _id: newUser.id,
-            login: newUser.name,
-            email: newUser.email,
-            password: newUser.password,
-            firstName: newUser.firstName,
-            lastName: newUser.lastName,
-            isAdmin: newUser.isAdmin,
-            token: getToken(newUser)
-        })
-    }
-    else {
-        res.status(401).send({ message: 'Invalid user data!' });
-    }
-})
 
 router.get('/createadmin', async (req, res) => {
     try {
@@ -56,5 +28,33 @@ router.get('/', async (req, res) => {
     res.send(users);
     console.log('users')
 })
+
+router.post('/signin', async (req, res) => {
+    try {
+        const signinUser = await User.findOne({ login: req.body.login });
+        console.log(req.body.login);
+        if(signinUser) {
+            const compare = await bcrypt.compare(req.body.password, signinUser.password);
+            if(compare) {
+                res.send({
+                    _id: signinUser.id,
+                    name: signinUser.name,
+                    email: signinUser.email,
+                    isAdmin: signinUser.isAdmin,
+                    token: getToken(signinUser)
+                })
+            } else {
+                res.status(401).send({ message: 'Invalid email or password!' });
+            }
+        } else {
+            res.status(401).send({ message: 'Invalid email or password!' });
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send({ message: 'Internal Server error Occured' });
+    }
+        
+});
+
 
 module.exports = router;
