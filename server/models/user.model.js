@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema({
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     isAdmin: { type: Boolean, required: true, default: false },
+    isArchive: { type: Boolean, required: true, default: false },
     created_at: { type: Date, default: Date.now }
 });
 
