@@ -19,7 +19,6 @@ const SigninPage = (props) => {
         }
 
         return () => {
-            //
         }
     }, [userInfo]);
 
@@ -31,7 +30,7 @@ const SigninPage = (props) => {
     return (
         <div className="signin">
                 <form onSubmit={submitHandler}>
-                    <ul className="form-container">
+                    <ul>
                         <li>
                             <h2>Sign In</h2>
                         </li>
