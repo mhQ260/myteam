@@ -3,7 +3,9 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers';
 
 const initialState = {
-    
+    userSignin: { 
+        userInfo : localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null,
+    },
 };
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

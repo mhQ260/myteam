@@ -31,6 +31,10 @@ font-family: 'Permanent Marker', cursive;*/
         color: #fff;
         border: none;
         cursor: pointer;
+
+        &:hover {
+            background: #4e74e3;
+        }
     }
 
     .button-wide {
@@ -39,6 +43,21 @@ font-family: 'Permanent Marker', cursive;*/
         margin: 10px auto;
         font-weight: bold;
         letter-spacing: .6px;
+    }
+
+    .button.empty {
+        background-color: transparent;
+        border: 1px #3d63d2 solid;
+        color: #3d63d2;
+
+        &:hover {
+            border: 2px #3d63d2 solid;
+        }
+    }
+
+    .form-button {
+        border: none;
+        background-color: transparent;
     }
 
     .bold {
@@ -50,6 +69,73 @@ font-family: 'Permanent Marker', cursive;*/
         top: 50%;
     }
 
+    .form-modal {
+        position: absolute;
+        width: 100%;
+        height: calc(100% - 50px);
+        background-color: #fff;
+        z-index: 2;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            width: 100%;
+
+            .form-buttons-container  {
+                width: 100%;
+                padding: 0px 20px;
+
+                li {
+                    width: 100%;
+                    padding: 20px 0;
+                    border-top: #ddd 1px solid;
+                    display: flex;
+                    justify-content: center;
+
+                    button {
+                        height: 30px;
+                        width: 100px;
+                        margin: 0 10px;
+                    }
+                }
+            }
+        
+            .form-container {
+                position: static;
+                padding: 0px 10px;
+                display: flex;
+                flex-direction: column;
+
+                li {
+                    margin: 10px 5px;
+                    display: flex;
+                    flex-direction: column;
+
+                    h2 {
+                        font-size: 2.2rem;
+                        font-weight: 400;
+                        letter-spacing: .2px;
+                        margin-bottom: 10%;
+                    }
+
+                    label {
+                        font-size: 1.4rem;
+                        margin-bottom: 3px;
+                    }
+
+                    input {
+                        font-size: 1.2rem;
+                        padding: 3px 2px;
+                    }
+                }
+            }
+
+            
+        }
+    }
+
     @media(min-width: 900px) {
 
         .app {
@@ -59,6 +145,51 @@ font-family: 'Permanent Marker', cursive;*/
             grid-template-columns: 16% 1fr;
             grid-template-rows: 1fr;
         }   
+
+        .form-modal {
+            right: 0;
+            width: 26%;
+            height: 100%;
+            box-shadow: -2px 0px 15px 3px rgba(66, 68, 90, 1);
+
+            form {
+
+                .form-buttons-container {
+                    
+                    li {
+                        padding: 25px 0;
+                        justify-content: center;
+
+                        button {
+                            height: 38px;
+                            width: 120px;
+                            font-size: 1.5rem;
+                        }
+                    }
+                }
+
+                .form-container  {
+                    padding: 5px 25px;
+
+                    li {
+                        margin:12px 5px;
+
+                        h2 {
+                            font-size: 2.4rem;
+                        }
+
+                        label {
+                            font-size: 1.5rem;
+                            margin-bottom: 3px;
+                        }
+
+                        input {
+                            font-size: 1.3rem;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @media(min-width: 1200px) {

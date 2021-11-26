@@ -1,16 +1,18 @@
 import { 
     USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNIN_FAILURE,
-    USER_CREATE_REQUEST, USER_CREATE_SUCCESS, USER_CREATE_FAILURE,
+    USER_SAVE_REQUEST, USER_SAVE_SUCCESS, USER_SAVE_FAILURE,
     USERS_GET_REQUEST, USERS_GET_SUCCESS, USERS_GET_FAILURE,
  } from '../constans';
 
 import axios from 'axios';
 import Cookie from 'js-cookie';
+import { userSave } from '../reducers/user.reducer';
 
 export const signin = (login, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { login, password } });
     try {
-        const { data } = await axios.post("/api/users/signin", { login, password });
+        console.log("Jestem tutaj")
+        const { data } = await axios.post('/api/users/signin', { login, password });
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         Cookie.set('userInfo', JSON.stringify(data));
     } catch (error) {
@@ -18,15 +20,30 @@ export const signin = (login, password) => async (dispatch) => {
     }
 }
 
-export const create = (login, email, password, firstName, lastName ) => async (dispatch) => {
-    dispatch({ type: USER_CREATE_REQUEST, payload: { login, email, password, firstName, lastName } });
+export const saveUser = (user) => async (dispatch, getState) => { 
     try {
-        const { data } = await axios.post("/api/users/create", { login, email, password, firstName, lastName });
-        dispatch({ type: USER_CREATE_SUCCESS, payload: data });
-        dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
-        localStorage.setItem('userInfo', JSON.stringify(data));
+        dispatch({ type: USER_SAVE_REQUEST, payload: user });
+        const { userSignin: { userInfo } } = getState(); 
+        if(!user._id) {
+            const { data } = await axios.post('/api/users', user, {
+                headers: {
+                    'Authorization': 'Bearer' + userInfo.token
+                }
+            });
+            
+            dispatch({ type: USER_SAVE_SUCCESS, payload: data });
+        } else {
+            
+            const { data } = await axios.put('/api/users/' + user._id, user, {
+                headers: {
+                    'Authorization': 'Bearer' + userInfo.token
+                }
+            });
+            dispatch({ type: USER_SAVE_SUCCESS, payload: data });
+        }
+
     } catch (error) {
-        dispatch({ type: USER_CREATE_FAILURE, payload: error.message });
+        dispatch({ type: USER_SAVE_FAILURE, payload: error.message });
     }
 }
 
