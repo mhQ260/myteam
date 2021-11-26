@@ -6,3 +6,4 @@ export { default as ReportsPage } from './Reports';
 export { default as TasksPage } from './Tasks';
 export { default as SigninPage } from './Signin';
 export { default as UsersManagePage } from './UsersManage';
+export { default as ProjectsManagePage } from './ProjectsManage';
