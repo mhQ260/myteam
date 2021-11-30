@@ -16,6 +16,8 @@ const ProjectsManagePage = () => {
     const [description, setDescription] = useState('');
     const [isArchive, setIsArchive] = useState('');
     const [searchName, setSearchName] = useState('');
+    const [searchChange, setSearchChange] = useState(false);
+    const [filteredResults, setFilteredResults] = useState([]);
 
     const projectsList = useSelector(state => state.projectsList);
     const { loading, projects, error } = projectsList;
@@ -33,7 +35,7 @@ const ProjectsManagePage = () => {
         return () => {
             
         };
-    }, [successSave]);
+    }, [successSave, searchChange]);
 
     const openModal = (project) => {
         setModal(true);
@@ -46,12 +48,21 @@ const ProjectsManagePage = () => {
         setIsArchive(project.isAdmin);
     }
 
+    const mySearchFunction = (val) => {
+        let tempData = projects.slice();
+        tempData = tempData.filter(
+            data => data.name.indexOf(val) > -1
+        );
+        setFilteredResults(tempData)
+    }
+
     const submitSearchHandler = (e) => {
         e.preventDefault();
+        setSearchChange(!searchChange);
+        mySearchFunction(searchName);
     }
 
     const submitFormHandler = (e) => {
-        console.log("click create")
         e.preventDefault();
         dispatch(saveProject({ _id: id, name, startDate, endDate, description, isArchive }));
     }
@@ -135,8 +146,9 @@ const ProjectsManagePage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {projects ? 
-                        projects.map(project => (
+                        {
+                        filteredResults ? 
+                        filteredResults.map(project => (
                             <tr key={project._id}>
                                 <td>{project.name}</td>
                                 <td>None</td>
@@ -148,8 +160,25 @@ const ProjectsManagePage = () => {
                             </tr>
                         ))
                         :
-                        <></>
-                    }
+                        <>
+                            {projects ? 
+                            projects.map(project => (
+                                <tr key={project._id}>
+                                    <td>{project.name}</td>
+                                    <td>None</td>
+                                    <td>{project.startDate.slice(0,10)}</td>
+                                    <td>{project.endDate.slice(0,10)}</td>
+                                    <td></td>
+                                    <td><button className="form-button" onClick={() => openModal(project)}><i class="fas fa-project-edit"></i></button></td>
+                                    <td><button className="form-button" onClick={() => deleteHandler(project)}><i class="fas fa-project-minus"></i></button></td>
+                                </tr>
+                            ))
+                            :
+                            <></>
+                            
+                            }
+                            </>
+                        }
                     </tbody>
                 </table>
             </div> 
