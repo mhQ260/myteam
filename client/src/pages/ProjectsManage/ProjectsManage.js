@@ -49,11 +49,11 @@ const ProjectsManagePage = () => {
     }
 
     const mySearchFunction = (val) => {
-        let tempData = projects.slice();
+        let tempData = projects.slice();;
         tempData = tempData.filter(
-            data => data.name.indexOf(val) > -1
+            data => data.name.toUpperCase().indexOf(val.toUpperCase()) > -1
         );
-        setFilteredResults(tempData)
+        setFilteredResults(tempData);
     }
 
     const submitSearchHandler = (e) => {
@@ -147,7 +147,7 @@ const ProjectsManagePage = () => {
                     </thead>
                     <tbody>
                         {
-                        filteredResults ? 
+                        filteredResults.length > 0 ? 
                         filteredResults.map(project => (
                             <tr key={project._id}>
                                 <td>{project.name}</td>
