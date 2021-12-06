@@ -71,7 +71,7 @@ const ProjectsManagePage = () => {
 
     }
 
-    return <>
+    return <div className="projects-manage">
         {loading ? <div>Loading...</div>
         : <> 
         {modal &&
@@ -155,8 +155,8 @@ const ProjectsManagePage = () => {
                                 <td>{project.startDate.slice(0,10)}</td>
                                 <td>{project.endDate.slice(0,10)}</td>
                                 <td></td>
-                                <td><button className="form-button" onClick={() => openModal(project)}><i class="fas fa-project-edit"></i></button></td>
-                                <td><button className="form-button" onClick={() => deleteHandler(project)}><i class="fas fa-project-minus"></i></button></td>
+                                <td><button className="form-button" onClick={() => openModal(project)}><i class="fas fa-edit"></i></button></td>
+                                <td><button className="form-button" onClick={() => deleteHandler(project)}><i class="fas fa-minus-circle"></i></button></td>
                             </tr>
                         ))
                         :
@@ -169,8 +169,8 @@ const ProjectsManagePage = () => {
                                     <td>{project.startDate.slice(0,10)}</td>
                                     <td>{project.endDate.slice(0,10)}</td>
                                     <td></td>
-                                    <td><button className="form-button" onClick={() => openModal(project)}><i class="fas fa-project-edit"></i></button></td>
-                                    <td><button className="form-button" onClick={() => deleteHandler(project)}><i class="fas fa-project-minus"></i></button></td>
+                                    <td><button className="form-button" onClick={() => openModal(project)}><i class="fas fa-edit"></i></button></td>
+                                    <td><button className="form-button" onClick={() => deleteHandler(project)}><i class="fas fa-minus-circle"></i></button></td>
                                 </tr>
                             ))
                             :
@@ -184,7 +184,7 @@ const ProjectsManagePage = () => {
             </div> 
         </div>
         </>}
-    </>
+    </div>
 }
 
 export default ProjectsManagePage;  
