@@ -16,6 +16,8 @@ const UsersManagePage = () => {
     const [lastName, setLastName] = useState('');
     const [isAdmin, setIsAdmin] = useState('');
     const [searchName, setSearchName] = useState('');
+    const [searchChange, setSearchChange] = useState(false);
+    const [filteredResults, setFilteredResults] = useState([]);
 
     const usersList = useSelector(state => state.usersList);
     const { loading, users, error } = usersList;
@@ -48,10 +50,20 @@ const UsersManagePage = () => {
 
     const submitSearchHandler = (e) => {
         e.preventDefault();
+        setSearchChange(!searchChange);
+        mySearchFunction(searchName);
+        
+    }
+
+    const mySearchFunction = (val) => {
+        let tempData = users.slice();;
+        tempData = tempData.filter(
+            data => data.lastName.toUpperCase().indexOf(val.toUpperCase()) > -1
+        );
+        setFilteredResults(tempData);
     }
 
     const submitFormHandler = (e) => {
-        console.log("click create")
         e.preventDefault();
         dispatch(saveUser({ _id: id, login, email, password, firstName, lastName, isAdmin }))
     }
@@ -115,7 +127,7 @@ const UsersManagePage = () => {
             <div className="manage-tools">
                 <div className="search-container">
                     <form onSubmit={submitSearchHandler}>
-                        <input type="text" name="searchName" id="searchName" value={searchName} placeholder="Name" onChange={(e) => setSearchName(e.target.value)} />
+                        <input type="text" name="searchName" id="searchName" value={searchName} placeholder="Last Name" onChange={(e) => setSearchName(e.target.value)} />
                         <button><i class="fas fa-search"></i></button>
                     </form>
                 </div>
@@ -136,18 +148,36 @@ const UsersManagePage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {users.map(user => (
+                    {
+                        filteredResults.length > 0 ? 
+                        filteredResults.map(user => (
                             <tr key={user._id}>
-                                <td><i class="fas fa-user"></i></td>
-                                <td><a className="bold">{user.lastName}</a> {user.firstName}</td>
-                                <td>{user.login}</td>
-                                <td>{user.isAdmin ? <>Administrator</> : <>-</>}</td>
-                                <td>{user.created_at.slice(0,10)}</td>
-                                <td></td>
-                                <td><button className="form-button" onClick={() => openModal(user)}><i class="fas fa-user-edit"></i></button></td>
-                                <td><button className="form-button" onClick={() => deleteHandler(user)}><i class="fas fa-user-minus"></i></button></td>
+                                    <td><i class="fas fa-user"></i></td>
+                                    <td><a className="bold">{user.lastName}</a> {user.firstName}</td>
+                                    <td>{user.login}</td>
+                                    <td>{user.isAdmin ? <>Administrator</> : <>-</>}</td>
+                                    <td>{user.created_at.slice(0,10)}</td>
+                                    <td></td>
+                                    <td><button className="form-button" onClick={() => openModal(user)}><i class="fas fa-user-edit"></i></button></td>
+                                    <td><button className="form-button" onClick={() => deleteHandler(user)}><i class="fas fa-user-minus"></i></button></td>
                             </tr>
-                        ))}
+                        ))
+                        :
+                        <>
+                            {users.map(user => (
+                                <tr key={user._id}>
+                                    <td><i class="fas fa-user"></i></td>
+                                    <td><a className="bold">{user.lastName}</a> {user.firstName}</td>
+                                    <td>{user.login}</td>
+                                    <td>{user.isAdmin ? <>Administrator</> : <>-</>}</td>
+                                    <td>{user.created_at.slice(0,10)}</td>
+                                    <td></td>
+                                    <td><button className="form-button" onClick={() => openModal(user)}><i class="fas fa-user-edit"></i></button></td>
+                                    <td><button className="form-button" onClick={() => deleteHandler(user)}><i class="fas fa-user-minus"></i></button></td>
+                                </tr>
+                            ))}
+                        </>
+                    }
                     </tbody>
                 </table>
             </div> 
