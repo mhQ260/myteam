@@ -9,7 +9,16 @@ router.get('/', async (req, res) => {
     res.send(projects);
 });
 
-router.post('/', isAuth, isAdmin, async (req, res) => {
+router.get('/:id', async (req, res) => {
+    const project = await Project.findOne({ _id: req.params.id });
+    if(project) {
+        res.send(project);
+    } else {
+        res.status(401).send({ msg: 'Project not foundend' });
+    }
+});
+
+router.post('/', async (req, res) => {
     const project = new Project({
         name: req.body.name,
         startDate: req.body.startDate,
