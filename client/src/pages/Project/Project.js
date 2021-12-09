@@ -38,9 +38,38 @@ const ProjectPage = (props) => {
 
     class OverwiewComponent extends React.Component {
         render () {
-          return(
-            <div>
-              Overview area
+          return (
+            <div className="project-overwiew">
+                <div className="overview-summary">
+                    <div className="summary-diagram">
+                        <div>
+                                    
+                        </div>
+                        <p>Tasks done</p>
+                    </div>
+                    <div className="summary-double">
+                        <div>X tasks finished</div>
+                        <div>X tasks in progress</div>
+                    </div>
+                </div>
+                <div className="overview-content">
+                    <h2>Recent activity</h2>
+                    <div className="overview-activity">
+                        <div>L</div>
+                        <div>User X added task</div>
+                        <div>4m</div>
+                    </div>
+                    <div className="overview-activity">
+                        <div>L</div>
+                        <div>User X added task</div>
+                        <div>4m</div>
+                    </div>
+                    <div className="overview-activity">
+                        <div>L</div>
+                        <div>User X added task</div>
+                        <div>4m</div>
+                    </div>
+                </div>
             </div>
           )
         }
@@ -71,22 +100,9 @@ const ProjectPage = (props) => {
         {loading ? <div>Loading...</div>
         :
         <>
-            <div className="project-header"><h1>Project {project.name}</h1></div>
-            <div className="project-summary">
-                <div className="summary-diagram">
-                    <div>
-                                
-                    </div>
-                    <p>Tasks done</p>
-                </div>
-                <div className="summary-double">
-                    <div>X tasks finished</div>
-                    <div>X tasks in progress</div>
-                </div>
-            </div>
+            <div className="project-header"><h1>{project.name}</h1></div>
             <div className="project-content">
                 {isActiveOverview ? <OverwiewComponent /> : isActiveTasks ? <TasksComponent /> : isActiveUsers ? <UsersComponent /> : null}
-               
             </div>
             <div className="nav">
                 <div className={isActiveOverview ? 'active-border' : null} onClick={() => toggleClass("a")}>Overwiew</div>

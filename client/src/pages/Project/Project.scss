@@ -16,48 +16,95 @@
         }
     }
 
-    .project-summary {
-        background-color: #fff;
-        height: 160px;
+	.project-content {
+        height: 100%;
         width: 100%;
-        display: flex;
 		// margin-bottom: 20px;
+        display: flex;
+        overflow: scroll;
+        margin-bottom: 20px;
 
-        .summary-diagram {
-            width: 50%;
+        .project-overwiew {
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border-right: solid 1px #f4f5f6;
-
-            p {
-                font-size: 1.4rem;
-                font-weight: 600;
-                color: #3558c2;
+            width: 100%;
+            
+            .overview-summary {
+                background-color: #fff;
+                height: 160px;
+                margin-bottom: 20px;
+                width: 100%;
+                display: flex;
+                // margin-bottom: 20px;
+        
+                .summary-diagram {
+                    width: 50%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    border-right: solid 1px #f4f5f6;
+        
+                    p {
+                        font-size: 1.4rem;
+                        font-weight: 600;
+                        color: #3558c2;
+                    }
+        
+                }
+        
+                .summary-double {
+                    width: 50%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-around;
+                    border-left: solid 1px #f4f5f6;
+                }
+        
             }
 
+            .overview-content {
+                height: 100%;
+                width: 100%;
+                padding: 5px;
+                font-size: 1.2rem;
+                background-color: #fff;
+
+                h2 {
+                    font-size: 1.4rem;
+                    text-transform: uppercase;
+                    letter-spacing: .5px;
+                    font-weight: 600;
+                }
+
+                .overview-activity {
+                    height: 60px;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-around;
+                    
+                    div {
+                        font-size: 1.2rem;
+
+                        &:nth-child(1) {
+                            height: 32px;
+                            width: 32px;
+                        }
+
+                        &:nth-child(2) {
+                            width: 70%;
+                        }
+
+                        &:nth-child(3) {
+                            color: #bbb;
+                        }
+                    }
+                }
+            }
         }
-
-        .summary-double {
-            width: 50%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-around;
-            border-left: solid 1px #f4f5f6;
-        }
-
-    }
-
-	.project-content {
-        height: 240px;
-        width: 100%;
-		// margin-bottom: 20px;
-		background-color: #fff;
-        display: flex;
 	}
 
 	.nav {
@@ -77,6 +124,22 @@
 
         .active-border {
             border-top: 2px solid #3558c2;
+            color: #3558c2;
+            font-weight: 600;
         }
 	}
+
+    @media(min-width: 900px) {
+
+        height: 100vh;
+
+
+    }
+
+    @media(min-width: 1200px) {
+
+        .app {
+            grid-template-columns: 14% 1fr;
+        }
+    }
 }
