@@ -150,7 +150,7 @@ const ProjectsManagePage = () => {
                         filteredResults.length > 0 ? 
                         filteredResults.map(project => (
                             <tr key={project._id}>
-                                <td>{project.name}</td>
+                                <td><Link to={'/project/' + project._id}>{project.name}</Link></td>
                                 <td>None</td>
                                 <td>{project.startDate.slice(0,10)}</td>
                                 <td>{project.endDate.slice(0,10)}</td>
@@ -164,7 +164,7 @@ const ProjectsManagePage = () => {
                             {projects ? 
                             projects.map(project => (
                                 <tr key={project._id}>
-                                    <td>{project.name}</td>
+                                    <td><Link to={'/project/' + project._id}>{project.name}</Link></td>
                                     <td>None</td>
                                     <td>{project.startDate.slice(0,10)}</td>
                                     <td>{project.endDate.slice(0,10)}</td>

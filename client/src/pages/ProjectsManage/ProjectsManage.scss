@@ -19,6 +19,11 @@
                     width: 180px;
                     justify-content: flex-start;
                     margin-left: 5px;
+
+                    a {
+                        font-size: 1.2rem;
+                        color: #000;
+                    }
                 }
 
                 &:nth-child(6) {
