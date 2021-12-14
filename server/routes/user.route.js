@@ -32,7 +32,6 @@ router.post('/', isAuth, isAdmin, async (req, res) => {
     }
     else {
         res.status(401).send({ message: 'Invalid user data!' });
-        console.log("Create user");
     }
 
     
@@ -79,13 +78,11 @@ router.get('/createadmin', async (req, res) => {
 router.get('/', async (req, res) => {
     const users = await User.find({});
     res.send(users);
-    console.log('users')
 })
 
 router.post('/signin', async (req, res) => {
     try {
         const signinUser = await User.findOne({ login: req.body.login });
-        console.log(req.body.login);
         if(signinUser) {
             const compare = await bcrypt.compare(req.body.password, signinUser.password);
             if(compare) {
