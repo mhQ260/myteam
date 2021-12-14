@@ -24,6 +24,10 @@
         overflow: scroll;
         margin-bottom: 20px;
 
+        .form-modal {
+            height: calc(100% - 98px);
+        }
+
         .project-overwiew {
             height: 100%;
             width: 100%;
@@ -163,7 +167,11 @@
                         border-bottom: 1px solid #d2d3d4; 
 
                         &:nth-child(even){
-                            background-color: #fff;
+                            background-color: #f7f7f7;
+                        }
+
+                        &:hover {
+                            background-color: #dde6ff;
                         }
                     }
 
@@ -189,9 +197,7 @@
                         }
                     }
                 }
-            }
-
-            
+            }            
         }
 	}
 
@@ -221,13 +227,75 @@
 
         height: 100vh;
 
+        .project-header {
+            padding: 5px 10px;
+        }
+
+        .project-content {
+
+            padding: 20px 0;
+            overflow: hidden;
+            
+            .form-modal {
+                top: 0;
+                height: 100%;
+            }
+
+            .project-users {
+                overflow: scroll;
+                scrollbar-width: none; 
+
+                .users-header {
+
+                    padding: 5px 10px;
+                    height: 40px;
+
+                    h2 {
+                        font-size: 1.8rem;
+                    }
+
+                    button {
+                        padding: 5px 18px;
+                    }
+                }
+
+                .users-list {
+                    padding: 15px 10px;
+
+                    table > thead > tr > th {
+                        font-size: 1.4rem;
+                    }
+
+                    table > tbody > tr > td {
+                        padding: 3px 8px;
+                        font-size: 1.2rem;
+
+                        &:nth-child(1) {
+
+                            a {
+                                font-size: 1.2rem;
+                            } 
+                        }
+
+                        &:nth-child(4) {
+                            text-align: center;
+
+                            i {
+                                font-size: 1.6rem;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
 
     }
 
     @media(min-width: 1200px) {
 
-        .app {
-            grid-template-columns: 14% 1fr;
+        .project-header {
+            padding: 10px 15px;
         }
     }
 }
