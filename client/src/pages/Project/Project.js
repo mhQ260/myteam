@@ -2,7 +2,7 @@ import React, {useEffect, useState, Component} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Project.scss';
-import { detailsProject } from '../../actions/project.action';
+import { detailsProject, saveUserToProject, listUsersInProject } from '../../actions/project.action';
 import { Doughnut } from 'react-chartjs-2';
 
 const ProjectPage = (props) => {
@@ -10,14 +10,25 @@ const ProjectPage = (props) => {
     const [isActiveOverview, setActiveOverview] = useState(false);
     const [isActiveTasks, setActiveTasks] = useState(false);
     const [isActiveUsers, setActiveUsers] = useState(false);
+    const [userId, setUserId] = useState('');
+    const [role, setRole] = useState('');
+    const [modal, setModal] = useState(false);
+
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
 
     const projectDetails = useSelector(state => state.projectDetails);
     const { loading, project, error } = projectDetails;
     const dispatch = useDispatch();
 
+    const usersInProjectList = useSelector(state => state.usersInProjectList);
+    const { loading: loadingUsersInProject, usersInProject, error: errorUsersInProject } = usersInProjectList;
+
     useEffect(() => {
         dispatch(detailsProject(props.match.params.id));
-    }, [props.match.params.id]);
+        dispatch(listUsersInProject(props.match.params.id));
+        setModal(false);
+    }, [props.match.params.id, isActiveOverview, isActiveTasks, isActiveUsers]);
 
     const toggleClass = (n) => {
 
@@ -35,6 +46,20 @@ const ProjectPage = (props) => {
             setActiveUsers(true);
         }
     };
+
+    const openModal = (user) => {
+        setModal(true);
+    }
+
+    const submitSearchHandler = () => {
+
+    }
+
+    const submitFormHandler = (e) => {
+        e.preventDefault();
+        dispatch(saveUserToProject({ projectId: props.match.params.id, userId, role }));
+        console.log(props.match.params.id + " dla " + userId + " z rolą " + role)
+    }
 
     class OverwiewComponent extends React.Component {
         render () {
@@ -88,9 +113,73 @@ const ProjectPage = (props) => {
     class UsersComponent extends React.Component {
         render () {
           return(
-            <div>
-              Users area
-            </div>
+            <>
+                {modal &&
+                    <div className="form-modal">
+                        <form onSubmit={submitFormHandler}>
+                            <ul className="form-container">
+                                <li>
+                                    <h2>Add user to Project</h2>
+                                </li>
+                                <li>
+                                    <label htmlFor="id">
+                                        User Id
+                                    </label>
+                                    <input type="text" name="userId" id="userId" value={userId} onChange={(e) => setUserId(e.target.value)} />
+                                </li>
+                                <li>
+                                    <label htmlFor="role">
+                                        User's role
+                                    </label>
+                                    <input type="text" name="role" id="role" value={role} onChange={(e) => setRole(e.target.value)} />
+                                </li>
+                            </ul>
+                            <ul className="form-buttons-container">
+                                <li>
+                                    <button type="submit" className="button">Create</button>
+                                    <button type="button" className="button empty" onClick={() => setModal(false)}>Cancel</button>
+                                </li>
+                            </ul>
+                        </form>
+                    </div>
+                }  
+                <div className="project-users">
+                    <div className="users-header">
+                        <h2>Users</h2>
+                        {userInfo.isAdmin ? 
+                            <button className="button" onClick={() => openModal({})}><i class="fas fa-user-plus"></i> Add User</button>
+                            :
+                            <></>
+                        }
+                    </div>
+                    <div className="users-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Login</th>
+                                    <th>Roles</th>
+                                    <th>Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {usersInProject.length > 0 ?
+                                    usersInProject.map(user => (
+                                        <tr key={user._id}>
+                                            <td><a className="bold">{user.lastName}</a> {user.firstName}</td>
+                                            <td>{user.login}</td>
+                                            <td>-</td>
+                                            <td><button><i class="fas fa-minus-circle"></i></button></td>
+                                        </tr>
+                                    ))
+                                :
+                                    <></>
+                                }
+                            </tbody>
+                        </table>
+                    </div> 
+                </div>
+            </>
           )
         }
     }
