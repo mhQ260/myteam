@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import userRoute from './routes/user.route';
 import projectRoute from './routes/project.route';
+import projectMemberRoute from './routes/projectMember.route';
 
 dotenv.config();
 const mongodbUrl = config.MONGODB_URL;
@@ -22,5 +23,6 @@ app.use(bodyParser.json());
 
 app.use('/api/users', userRoute);
 app.use('/api/projects', projectRoute);
+app.use('/api/projectMember', projectMemberRoute)
 
 app.listen(5000, () => { console.log("Server is running at at http://localhost:5000") }) 
