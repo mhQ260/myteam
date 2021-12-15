@@ -11,7 +11,7 @@ const TaskSchema = new mongoose.Schema({
     priority: { type: Number, required: true },
     status: { type: Number, default: 1, required: true },
     deadline: { type: Date, required: true },
-    timeSpent: { type: Number, default: 0 }
+    progress: { type: Number, default: 0 }
 })
 
 const taskModel = mongoose.model("Task", TaskSchema);
