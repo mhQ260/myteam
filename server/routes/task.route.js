@@ -5,7 +5,7 @@ import { isAuth, isAdmin } from '../util';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const tasks = await Task.find({});
+    const tasks = await Task.find({ 'project_id': req.query.projectId });
     res.send(tasks);
 });
 
@@ -19,16 +19,15 @@ router.get('/:id', async (req, res) => {
 });
 
 router.post('/', async (req, res) => {
+    
     const task = new Task({
         summary: req.body.summary,
         project_id: req.body.projectId,
         assigne_user_id: req.body.assigneUserId,
         create_user_id: req.body.createUserId,
-        created_at: req.body.createdAt,
         updated_at: req.body.updatedAt,
         description: req.body.description,
         priority: req.body.priority,
-        status: req.body.status,
         deadline: req.body.deadline,
         progress: req.body.progress
     });

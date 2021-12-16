@@ -2,6 +2,7 @@ import React, {useEffect, useState, Component} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import './Project.scss';
+import { TasksComponent } from './components/tasks.component';
 import { detailsProject, saveUserToProject, listUsersInProject } from '../../actions/project.action';
 import { Doughnut } from 'react-chartjs-2';
 
@@ -12,22 +13,26 @@ const ProjectPage = (props) => {
     const [isActiveUsers, setActiveUsers] = useState(false);
     const [userId, setUserId] = useState('');
     const [role, setRole] = useState('');
-    const [modal, setModal] = useState(false);
+    const [userModal, setUserModal] = useState(false);
 
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
 
     const projectDetails = useSelector(state => state.projectDetails);
     const { loading, project, error } = projectDetails;
-    const dispatch = useDispatch();
 
     const usersInProjectList = useSelector(state => state.usersInProjectList);
     const { loading: loadingUsersInProject, usersInProject, error: errorUsersInProject } = usersInProjectList;
 
+    const dispatch = useDispatch();
+
     useEffect(() => {
         dispatch(detailsProject(props.match.params.id));
         dispatch(listUsersInProject(props.match.params.id));
-        setModal(false);
+        setUserModal(false);
+        return () => {
+
+        };
     }, [props.match.params.id, isActiveOverview, isActiveTasks, isActiveUsers]);
 
     const toggleClass = (n) => {
@@ -47,18 +52,18 @@ const ProjectPage = (props) => {
         }
     };
 
-    const openModal = (user) => {
-        setModal(true);
+    const openUserModal = (user) => {
+        setUserModal(true);
     }
 
     const submitSearchHandler = () => {
 
     }
 
-    const submitFormHandler = (e) => {
+    const submitUsersFormHandler = (e) => {
         e.preventDefault();
         dispatch(saveUserToProject({ projectId: props.match.params.id, userId, role }));
-        console.log(props.match.params.id + " dla " + userId + " z rolą " + role)
+        setUserModal(false);
     }
 
     class OverwiewComponent extends React.Component {
@@ -100,23 +105,13 @@ const ProjectPage = (props) => {
         }
     }
 
-    class TasksComponent extends React.Component {
-        render () {
-          return(
-            <div>
-              Tasks area
-            </div>
-          )
-        }
-    }
-
     class UsersComponent extends React.Component {
         render () {
           return(
             <>
-                {modal &&
+                {userModal &&
                     <div className="form-modal">
-                        <form onSubmit={submitFormHandler}>
+                        <form onSubmit={submitUsersFormHandler}>
                             <ul className="form-container">
                                 <li>
                                     <h2>Add user to Project</h2>
@@ -137,7 +132,7 @@ const ProjectPage = (props) => {
                             <ul className="form-buttons-container">
                                 <li>
                                     <button type="submit" className="button">Create</button>
-                                    <button type="button" className="button empty" onClick={() => setModal(false)}>Cancel</button>
+                                    <button type="button" className="button empty" onClick={() => setUserModal(false)}>Cancel</button>
                                 </li>
                             </ul>
                         </form>
@@ -147,7 +142,7 @@ const ProjectPage = (props) => {
                     <div className="users-header">
                         <h2>Users</h2>
                         {userInfo.isAdmin ? 
-                            <button className="button" onClick={() => openModal({})}><i class="fas fa-user-plus"></i> Add User</button>
+                            <button className="button" onClick={() => openUserModal({})}><i class="fas fa-user-plus"></i> Add User</button>
                             :
                             <></>
                         }
@@ -163,7 +158,7 @@ const ProjectPage = (props) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {usersInProject.length > 0 ?
+                                {loading && usersInProject.length > 0 ?
                                     usersInProject.map(user => (
                                         <tr key={user._id}>
                                             <td><a className="bold">{user.lastName}</a> {user.firstName}</td>
@@ -191,7 +186,7 @@ const ProjectPage = (props) => {
         <>
             <div className="project-header"><h1>{project.name}</h1></div>
             <div className="project-content">
-                {isActiveOverview ? <OverwiewComponent /> : isActiveTasks ? <TasksComponent /> : isActiveUsers ? <UsersComponent /> : null}
+                {isActiveOverview ? <OverwiewComponent /> : isActiveTasks ? <TasksComponent projectId={project._id} /> : isActiveUsers ? <UsersComponent /> : null}
             </div>
             <div className="nav">
                 <div className={isActiveOverview ? 'active-border' : null} onClick={() => toggleClass("a")}>Overwiew</div>

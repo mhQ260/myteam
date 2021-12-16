@@ -25,6 +25,6 @@ app.use(bodyParser.json());
 app.use('/api/users', userRoute);
 app.use('/api/projects', projectRoute);
 app.use('/api/projectMember', projectMemberRoute);
-app.use('/api/task', taskRoute);
+app.use('/api/tasks', taskRoute);
 
 app.listen(5000, () => { console.log("Server is running at at http://localhost:5000") }) 
