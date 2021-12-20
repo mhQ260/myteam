@@ -1,6 +1,7 @@
 import React, {useEffect, useState, Component} from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { listTasks, saveTask } from '../../../actions/task.action';
+import { listUsers } from '../../../actions/user.action';
 
 export const TasksComponent = props => {
 
@@ -22,11 +23,15 @@ export const TasksComponent = props => {
     const taskSave = useSelector(state => state.taskSave);
     const { loading: loadingSave, success: successSave, error: errorSave } = taskSave
 
+    const usersList = useSelector(state => state.usersList);
+    const { loading: loadingUsers, users, error: errorUsers } = usersList;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         setTaskModal(false);
         dispatch(listTasks(props.projectId));
+        dispatch(listUsers());
         return () => {
         };
     }, [successSave]);
@@ -39,6 +44,25 @@ export const TasksComponent = props => {
         e.preventDefault();
         dispatch(saveTask({ summary, projectId: props.projectId, assigneUserId, createUserId: "619bf5a01f8f3f4880786085", description, priority, status, deadline }));
         setTaskModal(false);
+    }
+
+    const prioritySwitch = (prio) => {
+        switch (prio) {
+            case 1: return <td className="low">L</td>
+            case 2: return <td className="medium">M</td>
+            case 3: return <td className="high">H</td>
+            case 4: return <td className="critical">C</td>
+            default: return <td></td>;
+        }
+    }
+
+    const statusSwitch = (status) => {
+        switch (status) {
+            case 1: return <td>To Do</td>
+            case 2: return <td>In progress</td>
+            case 3: return <td>Done</td>
+            default: return <td></td>;
+        }
     }
 
           return(
@@ -111,24 +135,23 @@ export const TasksComponent = props => {
                                     <table>
                                         <thead>
                                             <tr>
+                                                <th>Priority</th>
                                                 <th>Summary</th>
                                                 <th>Status</th>
-                                                <th>Priority</th>
-                                                <th>Progress</th>
+                                                <th>Assigne user</th>
                                                 <th>End Date</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {tasks.map(task => (
                                                     <tr key={task._id}>
-                                                        <td>{task.priority}</td>
+                                                        <td>{prioritySwitch(task.priority)}</td>
                                                         <td>{task.summary}</td>
-                                                        <td>{task.assigne_user_id}</td>
-                                                        <td>{task.status}</td>
-                                                        <td>{task.deadline}</td>
+                                                        {statusSwitch(task.status)}
+                                                        <td>{users.map(user => user._id === task.assigne_user_id ? <>{user.firstName} {user.lastName}</> : <></>)}</td>
+                                                        <td>{task.deadline.slice(0,10)}</td>
                                                     </tr>
                                                 ))
-   
                                             }
                                         </tbody>
                                     </table>
