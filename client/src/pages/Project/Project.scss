@@ -199,6 +199,90 @@
                 }
             }            
         }
+
+        .project-tasks {
+            height: 100%;
+            width: 100%;
+            background-color: #fff;
+            padding: 5px;
+
+            .tasks-header {
+                height: 30px;
+                width: 100%;
+                margin-bottom: 20px;
+                display: flex;
+                justify-content: space-between;
+
+                h2 {
+                    font-size: 1.4rem;
+                    text-transform: uppercase;
+                    letter-spacing: .5px;
+                    font-weight: 600;
+                }
+
+                button {
+                    padding: 0 6px;
+                }
+            }
+
+            .tasks-list {
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    overflow: scroll;
+
+                    thead {
+                        text-align: left;
+                        border-bottom: 2px solid #d2d3d4;
+
+                        th {
+                            padding: 2px 8px;
+                            font-size: 1rem;
+    
+                            &:nth-child(1) {
+                                // width: 60px;
+                            }
+                        }
+                    }
+
+                    tbody {
+
+                        tr {
+                            width: 100%;
+                            border-bottom: 1px solid #d2d3d4; 
+
+                            &:nth-child(even){
+                                background-color: #f7f7f7;
+                            }
+
+                            &:hover {
+                                background-color: #dde6ff;
+                            }
+
+                                td {
+                                    padding: 2px 8px;
+                                    font-size: 1rem;
+
+                                    a {
+                                        color: #000;
+                                        font-weight: bold;
+                                        cursor: pointer;
+                                    }
+    
+                                    &:nth-child(3) {
+                                        text-transform: uppercase;
+                                    }
+        
+                                    &:nth-child(5) {
+                                        font-style: italic;
+                                    }                                
+                                }                            
+                        }                        
+                    }
+                }
+            }
+        }
 	}
 
 	.nav {
@@ -288,6 +372,44 @@
                 }
 
             }
+
+            .project-tasks {
+
+                .tasks-header {
+                    padding: 5px 10px;
+                    height: 40px;
+
+                    h2 {
+                        font-size: 1.8rem;
+                    }
+
+                    button {
+                        padding: 5px 18px;
+                    }
+                }
+
+                .tasks-list {
+                    padding: 15px 10px;
+
+                    table > thead > tr > th {
+                        font-size: 1.4rem;
+                    }
+    
+                    table > tbody > tr > td {
+                        padding: 3px 8px;
+                        font-size: 1.2rem;
+
+                        &:nth-child(2) {
+
+                            a {
+                                font-size: 1.2rem;
+                            } 
+                        }
+                    }
+                }
+
+                
+            }
         }
 
     }
@@ -296,6 +418,28 @@
 
         .project-header {
             padding: 10px 15px;
+        }
+
+        .project-content {
+
+            .project-tasks {
+
+                .tasks-list {
+                    padding: 15px;
+
+                    table > thead > tr > th {
+                        
+                        &:nth-child(2) {
+                            width: 60%;
+                        }
+                    }
+
+                    table > tbody > tr > td {
+                        padding: 4px 8px;
+                    }
+
+                }
+            }
         }
     }
 }
