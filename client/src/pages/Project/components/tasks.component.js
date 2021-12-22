@@ -1,4 +1,5 @@
 import React, {useEffect, useState, Component} from 'react';
+import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listTasks, saveTask } from '../../../actions/task.action';
 import { listUsers } from '../../../actions/user.action';
@@ -48,20 +49,20 @@ export const TasksComponent = props => {
 
     const prioritySwitch = (prio) => {
         switch (prio) {
-            case 1: return <td className="low">L</td>
-            case 2: return <td className="medium">M</td>
-            case 3: return <td className="high">H</td>
-            case 4: return <td className="critical">C</td>
-            default: return <td></td>;
+            case 1: return <td className="low"><i class="far fa-arrow-alt-circle-down"></i></td>
+            case 2: return <td className="medium"><i class="far fa-arrow-alt-circle-down"></i></td>
+            case 3: return <td className="high"><i class="far fa-arrow-alt-circle-up"></i></td>
+            case 4: return <td className="critical"><i class="far fa-arrow-alt-circle-up"></i></td>
+            default: return <td></td>
         }
     }
 
     const statusSwitch = (status) => {
         switch (status) {
-            case 1: return <td>To Do</td>
-            case 2: return <td>In progress</td>
-            case 3: return <td>Done</td>
-            default: return <td></td>;
+            case 1: return <td><p className="grey">To Do</p></td>
+            case 2: return <td><p className="blue">In progress</p></td>
+            case 3: return <td><p className="green">Done</p></td>
+            default: return <td></td>
         }
     }
 
@@ -144,21 +145,19 @@ export const TasksComponent = props => {
                                         </thead>
                                         <tbody>
                                             {tasks.map(task => (
-                                                    <tr key={task._id}>
-                                                        <td>{prioritySwitch(task.priority)}</td>
-                                                        <td>{task.summary}</td>
-                                                        {statusSwitch(task.status)}
-                                                        <td>{users.map(user => user._id === task.assigne_user_id ? <>{user.firstName} {user.lastName}</> : <></>)}</td>
-                                                        <td>{task.deadline.slice(0,10)}</td>
+                                                    <tr key={task._id} >                                                        
+                                                            {prioritySwitch(task.priority)}
+                                                            <td><Link to="">{task.summary}</Link></td>
+                                                            {statusSwitch(task.status)}
+                                                            <td>{users.map(user => user._id === task.assigne_user_id ? <>{user.firstName} {user.lastName}</> : <></>)}</td>
+                                                            <td>{task.deadline.slice(0,10)}</td>
                                                     </tr>
                                                 ))
                                             }
                                         </tbody>
                                     </table>
                                 </div>
-                             </div>
-                
+                            </div>               
                 </>
           )
-
 }

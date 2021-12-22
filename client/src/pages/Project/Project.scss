@@ -239,9 +239,9 @@
                         th {
                             padding: 2px 8px;
                             font-size: 1rem;
-    
-                            &:nth-child(1) {
-                                // width: 60px;
+
+                            &:nth-child(3) {
+                                width: 90px;
                             }
                         }
                     }
@@ -269,15 +269,58 @@
                                         font-weight: bold;
                                         cursor: pointer;
                                     }
+
+                                    &:nth-child(1) {
+
+                                        i {
+                                            font-size: 1.6rem;
+                                        }
+                                    }                                   
     
                                     &:nth-child(3) {
                                         text-transform: uppercase;
+
+                                        p {
+                                            padding: 2px 4px;
+                                            color: #fff;
+                                            font-weight: bold;
+                                            text-align: center;
+                                            white-space: nowrap;                                            
+                                        }
+
+                                        .grey {                                                                                      
+                                            background-color: #303030;
+                                        }
+
+                                        .blue {                                            
+                                            background-color: #2760db;
+                                        }
+
+                                        .green {
+                                            background-color: #097258;
+                                        }
                                     }
         
                                     &:nth-child(5) {
                                         font-style: italic;
                                     }                                
                                 }                            
+
+                                .low > i {
+                                        color: #757575;
+                                }
+
+                                .medium > i {
+                                    color: #71b0f8;
+                                }
+
+                                .high > i {
+                                    color: #bd7c1b;
+                                }
+
+                                .critical > i {
+                                    color: #c00a0a;
+                                }
                         }                        
                     }
                 }
@@ -436,6 +479,17 @@
 
                     table > tbody > tr > td {
                         padding: 4px 8px;
+
+                        &:nth-child(1) {
+
+                            i {
+                                font-size: 1.8rem;
+                            }
+                        } 
+
+                        &:nth-child(3) {
+                            width: 110px;
+                        }
                     }
 
                 }
