@@ -18,6 +18,9 @@ export const TasksComponent = props => {
     const [progress, setProgress] = useState('');
     const [taskModal, setTaskModal] = useState(false);
 
+    const userSignin = useSelector(state => state.userSignin);
+    const { userInfo } = userSignin;
+
     const tasksList = useSelector(state => state.tasksList);
     const { loading, tasks, error } = tasksList;
 
@@ -88,7 +91,11 @@ export const TasksComponent = props => {
                                  <label htmlFor="assigneUser">
                                      Assigne User
                                  </label>
-                                 <input type="text" name="assigneUser" id="assigneUser" value={assigneUserId} onChange={(e) => setAssigneUserId(e.target.value)} />
+                                 <select name="assigneUser" id="assigneUser" value={assigneUserId} onChange={(e) => setAssigneUserId(e.target.value)}>
+                                     {users.map(user => (
+                                         <option value={user._id}>{user.firstName} {user.lastName}</option>
+                                     )) }
+                                </select>
                             </li>
                             <li>
                                  <label htmlFor="description">
@@ -126,7 +133,7 @@ export const TasksComponent = props => {
                 <div className="project-tasks">
                                  <div className="tasks-header">
                                      <h2>Tasks</h2>
-                                     {true ? 
+                                     {userInfo.isAdmin ? 
                                         <button className="button" onClick={() => openTaskModal({})}><i class="fas fa-user-plus"></i> Add Task</button>
                                         :
                                         <></>
