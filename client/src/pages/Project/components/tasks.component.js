@@ -154,7 +154,7 @@ export const TasksComponent = props => {
                                             {tasks.map(task => (
                                                     <tr key={task._id} >                                                        
                                                             {prioritySwitch(task.priority)}
-                                                            <td><Link to="">{task.summary}</Link></td>
+                                                            <td><Link to={"/task/" + task._id}>{task.summary}</Link></td>
                                                             {statusSwitch(task.status)}
                                                             <td>{users.map(user => user._id === task.assigne_user_id ? <>{user.firstName} {user.lastName}</> : <></>)}</td>
                                                             <td>{task.deadline.slice(0,10)}</td>
