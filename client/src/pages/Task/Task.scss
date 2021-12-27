@@ -132,4 +132,55 @@
 
         
     }
+
+    @media(min-width: 900px) {
+
+        .task-header {
+            padding: 5px 10px;
+        }
+
+        .task-content {
+            padding: 40px 30px;
+            flex-direction: row;
+            justify-content: flex-start;
+
+            & > div {
+                width: 50%;
+                margin: 10px 0;
+    
+                & div:nth-child(1) {
+                    width: 25%;
+                    margin-right: 12px;
+                    text-align: right;
+                    font-weight: bold;
+                }
+    
+                & div:nth-child(2) {
+                    width: 50%;
+                }
+    
+                
+            } 
+        }
+    }
+
+    @media(min-width: 1200px) {
+
+        .task-header {
+            padding: 10px 15px;
+        }
+
+        .task-content {
+            padding: 50px 100px;
+        }
+
+    }
+
+    @media(min-width: 1600px) {
+
+        .task-content {
+            padding: 50px 200px;
+        }
+
+    }
 }
