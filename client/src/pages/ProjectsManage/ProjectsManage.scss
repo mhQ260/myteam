@@ -6,7 +6,7 @@
             th {
 
                 &:nth-child(1) {
-                    margin-left: 5px;
+                    display: block;
                 }
             }
         }
@@ -16,12 +16,12 @@
             td {
 
                 &:nth-child(1) {
-                    width: 180px;
+                    display: block;
+                    // width: 180px;
                     justify-content: flex-start;
-                    margin-left: 5px;
 
                     a {
-                        font-size: 1.2rem;
+                        font-size: 1rem;
                         color: #000;
                     }
                 }
