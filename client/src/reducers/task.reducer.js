@@ -1,5 +1,6 @@
 import {
     TASKS_GET_REQUEST, TASKS_GET_SUCCESS, TASKS_GET_FAILURE,
+    USER_TASKS_GET_REQUEST, USER_TASKS_GET_SUCCESS, USER_TASKS_GET_FAILURE,
     TASK_DETAILS_REQUEST, TASK_DETAILS_SUCCESS, TASK_DETAILS_FAILURE,
     TASK_SAVE_REQUEST, TASK_SAVE_SUCCESS, TASK_SAVE_FAILURE,
     TASK_DELETE_REQUEST, TASK_DELETE_SUCCESS, TASK_DELETE_FAILURE,
@@ -27,6 +28,24 @@ export const tasksList = (state = initialState, action) => {
             return state;
     }
 }
+
+export const userTasksList = (state = initialState, action) => {
+
+    switch(action.type) {
+        case USER_TASKS_GET_REQUEST:
+            return { loading: true, tasks: [] };
+
+        case USER_TASKS_GET_SUCCESS:
+            return { loading: false, tasks: action.payload };
+
+        case USER_TASKS_GET_FAILURE:
+            return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+}
+
 
 export const taskDetails = (state = initialState, action) => {
 

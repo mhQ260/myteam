@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 
 import { userSignin, userSave, usersList } from './user.reducer';
 import { projectSave, projectsList, projectDetails, usersInProjectList, userInProjectSave } from './project.reducer';
-import { taskSave, tasksList, taskDetails } from './task.reducer';
+import { taskSave, tasksList, userTasksList, taskDetails } from './task.reducer';
 
 
 const rootReducer = combineReducers({
@@ -16,6 +16,7 @@ const rootReducer = combineReducers({
     userInProjectSave,
     taskSave,
     tasksList,
+    userTasksList,
     taskDetails
 });
 
