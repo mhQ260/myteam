@@ -42,7 +42,7 @@ export const MembersComponent = props => {
 
     const submitUsersFormHandler = (e) => {
         e.preventDefault();
-        dispatch(saveUserToProject({ projectId: props.match.params.id, userId, role }));
+        dispatch(saveUserToProject({ projectId: props.projectId, userId, role }));
         setUserModal(false);
     }
 
