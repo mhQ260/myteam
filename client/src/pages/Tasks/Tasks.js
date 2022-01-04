@@ -50,7 +50,7 @@ const TasksPage = () => {
         <>
             <div className="tasks">
                 <div className="tasks-header">
-                    <h2>My Tasks</h2>
+                    <h1>My Tasks</h1>
                 </div>
                 <div className="tasks-list">
                     <table>
@@ -59,7 +59,7 @@ const TasksPage = () => {
                                 <th>Priority</th>
                                 <th>Summary</th>
                                 <th>Status</th>
-                                <th>Assigne user</th>
+                                <th>Progress</th>
                                 <th>End Date</th>
                             </tr>
                         </thead>
@@ -68,7 +68,8 @@ const TasksPage = () => {
                                 <tr key={task._id} >                                                        
                                     {prioritySwitch(task.priority)}
                                     <td><Link to={"/task/" + task._id}>{task.summary}</Link></td>
-                                    {statusSwitch(task.status)}                                                            
+                                    {statusSwitch(task.status)}
+                                    <td>{task.progress}% <div style={{backgroundColor: "#00a87e", width: `${task.progress}px`}}></div></td>                                                    
                                     <td>{task.deadline.slice(0,10)}</td>
                                 </tr>
                                 ))
