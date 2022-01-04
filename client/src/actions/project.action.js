@@ -1,5 +1,6 @@
 import {
     PROJECTS_GET_REQUEST, PROJECTS_GET_SUCCESS, PROJECTS_GET_FAILURE,
+    USER_PROJECTS_GET_REQUEST, USER_PROJECTS_GET_SUCCESS, USER_PROJECTS_GET_FAILURE,
     PROJECT_DETAILS_REQUEST, PROJECT_DETAILS_SUCCESS, PROJECT_DETAILS_FAILURE,
     PROJECT_SAVE_REQUEST, PROJECT_SAVE_SUCCESS, PROJECT_SAVE_FAILURE,
     PROJECT_DELETE_REQUEST, PROJECT_DELETE_SUCCESS, PROJECT_DELETE_FAILURE,
@@ -42,6 +43,17 @@ export const listProjects = () => async (dispatch) => {
     }
     catch (error) {
         dispatch({ type: PROJECTS_GET_FAILURE, payload: error.message });
+    }
+}
+
+export const listUserProjects = (userId) => async (dispatch) => {
+    try {
+        dispatch({ type: USER_PROJECTS_GET_REQUEST });
+        const { data } = await axios.get('/api/projectMember/user/' + userId );
+        dispatch({ type: USER_PROJECTS_GET_SUCCESS, payload: data });
+    }
+    catch (error) {
+        dispatch({ type: USER_PROJECTS_GET_FAILURE, payload: error.message });
     }
 }
 

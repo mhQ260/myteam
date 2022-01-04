@@ -25,6 +25,22 @@ router.get('/:id', async (req, res) => {
     res.send(users)
 })
 
+router.get('/user/:userId', async (req, res) => {
+    let arr = [];
+    const userProjects = await ProjectMember.find({ user_id: req.params.userId});  
+
+    if(userProjects) {
+        for(let i = 0; i < userProjects.length; i++) {
+            arr[i] = userProjects[i].project_id; 
+        }
+    } else {
+        res.status(401).send({ message: 'No projects for user!' });
+    }
+    const projects = await Project.find({ '_id': { $in: arr }})
+
+    res.send(projects)
+})
+
 router.post('/addMember', async (req, res) => {
     
     const projectMember = new ProjectMember({
