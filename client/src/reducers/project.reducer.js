@@ -1,5 +1,6 @@
 import {
     PROJECTS_GET_REQUEST, PROJECTS_GET_SUCCESS, PROJECTS_GET_FAILURE,
+    USER_PROJECTS_GET_REQUEST, USER_PROJECTS_GET_SUCCESS, USER_PROJECTS_GET_FAILURE,
     PROJECT_DETAILS_REQUEST, PROJECT_DETAILS_SUCCESS, PROJECT_DETAILS_FAILURE,
     PROJECT_SAVE_REQUEST, PROJECT_SAVE_SUCCESS, PROJECT_SAVE_FAILURE,
     PROJECT_DELETE_REQUEST, PROJECT_DELETE_SUCCESS, PROJECT_DELETE_FAILURE,
@@ -42,6 +43,23 @@ export const projectsList = (state = initialState, action) => {
             return { loading: false, projects: action.payload };
 
         case PROJECTS_GET_FAILURE:
+            return { loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+}
+
+export const userProjectsList = (state = initialState, action) => {
+
+    switch(action.type) {
+        case USER_PROJECTS_GET_REQUEST:
+            return { loading: true, projects: [] };
+
+        case USER_PROJECTS_GET_SUCCESS:
+            return { loading: false, projects: action.payload };
+
+        case USER_PROJECTS_GET_FAILURE:
             return { loading: false, error: action.payload };
 
         default:
