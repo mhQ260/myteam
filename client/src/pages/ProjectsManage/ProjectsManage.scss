@@ -16,13 +16,30 @@
             td {
 
                 &:nth-child(1) {
-                    display: block;
-                    // width: 180px;
+                    height: 33px;
+                    
+                    display: flex;
                     justify-content: flex-start;
+                    align-items: center;
+                    
 
                     a {
+                        display: block;
+                        height: 100%;
                         font-size: 1rem;
-                        color: #000;
+                        font-weight: bold;
+                        color: #000;   
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;                                             
+                    }
+
+                    @media(min-width: 900px){
+                        margin-right: 3rem;
+
+                        a {
+                            font-size: 1.2rem;
+                        }
                     }
                 }
 
