@@ -1,16 +1,53 @@
 import React, {useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { listUserTasks } from '../../actions/task.action';
 import './Dashboard.scss';
+import DoughnutChart from './chart';
 
 const DashboardPage = () => {
-
-    const loading = false;
 
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
 
+    const userTasksList = useSelector(state => state.userTasksList);
+    const { loading, tasks, error } = userTasksList;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(listUserTasks(userInfo._id));
+
+        return () => {
+        };
+    }, []);
+
     const date = new Date().toLocaleString('default', {day: 'numeric', month: 'short', year: '2-digit' });
+
+    const tasksCount = tasks.length;
+
+    const tasksFinished = () => {
+        let i = 0;
+        tasks.map(task => task.status === 3 ? i++ : <></> )
+        return i;
+    }
+
+    const tasksInProgress = () => {
+        let i = 0;
+        tasks.map(task => task.status === 2 ? i++ : <></> )
+        return i;
+    }
+
+    const percTasks = () => {
+        console.log("Jestem tutej " + tasksFinished() + " " + tasks.length);  
+        let finish = tasksFinished();
+        let allTasks = tasks.length;
+        let perc = (100 * finish)/allTasks;
+        return perc.toFixed(0);
+    }
+
+    const [chartData, setChartData] = useState({})
+      
 
     return (
         loading ? <div>Loading...</div>
@@ -24,14 +61,12 @@ const DashboardPage = () => {
                 <div className="dashboard-container">
                     <div className="dashboard-summary">
                         <div className="summary-diagram">
-                            <div>
-                                        
-                            </div>
-                            <p>Tasks done</p>
+                            <p>{percTasks()}% tasks done</p>
+                            <div className="chart"><DoughnutChart tasksOvr={tasksCount} tasksFin={tasksFinished()}/></div>
                         </div>
                         <div className="summary-double">
-                            <div>X tasks finished</div>
-                            <div>X tasks in progress</div>
+                            <div>{tasksFinished()} tasks finished</div>
+                            <div>{tasksInProgress()} tasks in progress</div>
                         </div>
                     </div>
                     <div className="dashboard-content">

@@ -7,8 +7,6 @@ import { TasksComponent } from './components/tasks.component';
 import { MembersComponent } from './components/members.component';
 import { OverviewComponent } from './components/overview.component';
 
-import { Doughnut } from 'react-chartjs-2';
-
 const ProjectPage = (props) => {
 
     const [isActiveOverview, setActiveOverview] = useState(false);
