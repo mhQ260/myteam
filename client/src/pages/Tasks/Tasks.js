@@ -18,7 +18,6 @@ const TasksPage = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log("stuk")
         dispatch(listUserTasks(userInfo._id));
 
         return () => {

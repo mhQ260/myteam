@@ -32,10 +32,10 @@ const ProjectsPage = () => {
                 <div className="projects-container">
                     {projects.map(project => (
                          <Link to={"/project/" + project._id}>
-                             <div className="projects-el">
+                            <div className="projects-el">
                                 <div>{project.name}</div>
                                 <div><p>End date: </p><p>{project.endDate.slice(0,10)}</p></div>
-                             </div>
+                            </div>
                         </Link>
                     ))}
                 </div>
