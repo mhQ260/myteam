@@ -39,8 +39,12 @@ const Navigation = () => {
                 <Link to="/" onClick={signoutHandler} className="navigation-el">Sign Out</Link>
             </div>   
             <div className="menu-burger">
-                <i className="fa fa-bars" aria-hidden="true" onClick={toggleMenu}></i>
-                <i className="fa fa-times hidden" aria-hidden="true" onClick={toggleMenu}></i>    
+                <div className="banner-burger">MyTeam</div>
+                <div className="burger-ico">
+                    <i className="fa fa-bars" aria-hidden="true" onClick={toggleMenu}></i>
+                    <i className="fa fa-times hidden" aria-hidden="true" onClick={toggleMenu}></i>   
+                </div>
+                 
             </div>
             
         </nav>
