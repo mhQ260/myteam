@@ -65,8 +65,14 @@ const DashboardPage = () => {
                             <div className="chart"><DoughnutChart tasksOvr={tasksCount} tasksFin={tasksFinished()}/></div>
                         </div>
                         <div className="summary-double">
-                            <div>{tasksFinished()} tasks finished</div>
-                            <div>{tasksInProgress()} tasks in progress</div>
+                            <div>
+                                <div>Tasks finished</div>
+                                <div>{tasksFinished()}</div>
+                            </div>
+                            <div>
+                                <div>Tasks in progress</div>
+                                <div>{tasksInProgress()}</div>
+                            </div>
                         </div>
                     </div>
                     <div className="dashboard-content">
