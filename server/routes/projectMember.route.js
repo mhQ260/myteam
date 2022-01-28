@@ -36,7 +36,7 @@ router.get('/user/:userId', async (req, res) => {
     } else {
         res.status(401).send({ message: 'No projects for user!' });
     }
-    const projects = await Project.find({ '_id': { $in: arr }})
+    const projects = await Project.find({ '_id': { $in: arr }}).sort({field: 'asc', name: 1});
 
     res.send(projects)
 })
