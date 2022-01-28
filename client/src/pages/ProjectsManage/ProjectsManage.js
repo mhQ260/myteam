@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './ProjectsManage.scss';
 import { listProjects, saveProject } from '../../actions/project.action';
+import { listUsers } from '../../actions/user.action';
 
 const ProjectsManagePage = () => {
 
@@ -25,6 +26,9 @@ const ProjectsManagePage = () => {
     const projectSave = useSelector(state => state.projectSave);
     const { loading: loadingSave, success: successSave, error: errorSave } = projectSave;
 
+    const usersList = useSelector(state => state.usersList);
+    const { loading: loadingUsers, users, error: errorUsers } = usersList;
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -32,6 +36,7 @@ const ProjectsManagePage = () => {
             setModal(false);
         }
         dispatch(listProjects());
+        dispatch(listUsers());
         return () => {
             
         };
@@ -97,7 +102,11 @@ const ProjectsManagePage = () => {
                             <label htmlFor="managerId">
                                 Project Manager
                             </label>
-                            <input type="text" name="managerId" id="managerId" value={managerId} onChange={(e) => setManagerId(e.target.value)} />
+                                <select name="managerId" id="managerId" value={managerId} onChange={(e) => setManagerId(e.target.value)}>
+                                     {users.map(user => (
+                                         <option value={user._id}>{user.firstName} {user.lastName}</option>
+                                     )) }
+                                </select>
                         </li>
                         <li>
                             <label htmlFor="startDate">
