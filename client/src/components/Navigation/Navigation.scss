@@ -6,6 +6,8 @@ nav {
     color: #fff;
     display: flex;
     flex-direction: column;
+    box-shadow: 1px 0px 24px 0px rgba(66, 68, 90, 1);
+    z-index: 1;
 
     .banner {
         display: none;

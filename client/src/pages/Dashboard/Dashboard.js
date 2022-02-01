@@ -76,21 +76,31 @@ const DashboardPage = () => {
                         </div>
                     </div>
                     <div className="dashboard-content">
-                        <h2>My activity</h2>
+                        <h2>Activity</h2>
                         <div className="dashboard-activity">
-                            <div>L</div>
-                            <div>User X added task</div>
-                            <div>4m</div>
+                            <div><i class="fas fa-user-circle"></i></div>
+                            <div>User Jan Kowalski added task <b>Testowy task</b> for project <b>Shopp App</b></div>
+                            <div>34m</div>
                         </div>
                         <div className="dashboard-activity">
-                            <div>L</div>
-                            <div>User X added task</div>
-                            <div>9m</div>
+                            <div><i class="fas fa-user-circle"></i></div>
+                            <div>User Matty Test added task <b>Dodanie exportu danych</b> for project <b>Shopp App</b></div>
+                            <div>1h</div>
                         </div>
                         <div className="dashboard-activity">
-                            <div>L</div>
-                            <div>User X added task</div>
-                            <div>27m</div>
+                            <div><i class="fas fa-user-circle"></i></div>
+                            <div>User Jan Kowalski added task <b>Testowy task</b> for project <b>Shopp App</b></div>
+                            <div>3h</div>
+                        </div>
+                        <div className="dashboard-activity">
+                            <div><i class="fas fa-user-circle"></i></div>
+                            <div>User Jan Kowalski added task <b>Testowy task</b> for project <b>Shopp App</b></div>
+                            <div>4h</div>
+                        </div>
+                        <div className="dashboard-activity">
+                            <div><i class="fas fa-user-circle"></i></div>
+                            <div>User Tymoteusz Dziedzic added task <b>Create users function</b> for project <b>Medicalapp</b></div>
+                            <div>6h</div>
                         </div>
                     </div>
                 </div>

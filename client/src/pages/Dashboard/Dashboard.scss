@@ -5,13 +5,13 @@
     flex-direction: column;
 
     .dashboard-header {
-        padding: 2px 4px;
-        margin-bottom: 30px;
+        padding: 15px 5px;
+        margin-bottom: 25px;
         display: flex;
         justify-content: space-between;
 
         h2 {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
         }
     }
 
@@ -85,25 +85,52 @@
         }
 
         .dashboard-content {
-            height: 80%;
+            height: 75%;
             width: 100%;
             padding: 5px;
             font-size: 1.2rem;
             background-color: #fff;
 
             h2 {
+                margin-bottom: 30px;
                 font-size: 1.4rem;
                 text-transform: uppercase;
                 letter-spacing: .5px;
-                font-weight: 600;
+                font-weight: 600;  
             }
 
             .dashboard-activity {
                 height: 60px;
                 width: 100%;
+                padding: 10px 0px;
                 display: flex;
-                align-items: center;
-                justify-content: space-around;
+                justify-content: space-between;
+
+                & div:nth-child(1) {
+                    height: 100%;
+                    width: 25px;
+                    display: flex;
+                    // align-items: center;
+                    justify-content: center;
+                    
+                    & > i {
+                        font-size: 1.8rem;
+                    }
+                }
+
+                & div:nth-child(2) {
+                    height: 100%;
+                    width: 100%;
+                    padding: 0 10px;
+                    font-size: 1.1rem;                
+                }
+
+                & div:nth-child(3) {
+                    height: 100%;
+                    width: 30px;
+                    color: #888;
+                    text-align: center;
+                }
             }
         }
     }
@@ -115,35 +142,71 @@
             padding: 5px 10px;
         }
 
-        .dashboard-container > .dashboard-summary {
+        .dashboard-container {
+        
+            .dashboard-summary {
 
-            height: 240px;
+                height: 240px;
 
-            .summary-diagram {
+                .summary-diagram {
 
-                p {
-                    font-size: 2rem;
-                    padding-bottom: 12px;
+                    p {
+                        font-size: 2rem;
+                        padding-bottom: 12px;
+                    }
+        
+                    .chart {
+                        width: 150px;
+                        height: 150px;
+                    }
                 }
-    
-                .chart {
-                    width: 150px;
-                    height: 150px;
+
+                .summary-double {
+                    padding: 10px 20px;
+
+                    & div {
+
+                        div:nth-child(1) {
+                            font-size: 1.4rem;
+                        }
+
+                        div:nth-child(2) {
+                            padding: 10px 0 0 10px;
+                            font-size: 2.4rem;
+                        }
+                    }
                 }
             }
 
-            .summary-double {
-                padding: 10px 20px;
+            .dashboard-content {
+                padding: 15px;
 
-                & div {
+                h2 {
+                    font-size: 1.8rem;
+                }
 
-                    div:nth-child(1) {
-                        font-size: 1.4rem;
+                .dashboard-activity {
+                    height: 70px;
+                    padding: 12px 10px;
+
+                    & div:nth-child(1) {
+                        width: 70px;
+
+                        & > i {
+                            font-size: 2.4rem;
+                        }
                     }
 
-                    div:nth-child(2) {
-                        padding: 10px 0 0 10px;
-                        font-size: 2.4rem;
+                    & div:nth-child(2) {
+                        padding: 0 40px;
+                        font-size: 1.4rem;   
+                        b {
+                            font-size: 1.4rem;
+                        }             
+                    }
+    
+                    & div:nth-child(3) {
+                        font-size: 1.2rem;
                     }
                 }
             }
