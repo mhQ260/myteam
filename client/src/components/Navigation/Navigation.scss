@@ -1,9 +1,9 @@
 nav {
     grid-area: nav;       
-    padding: 10px;
+    padding: 5px;
     height: 100%;
-    background-color: #3558c2;
-    color: #fff;
+    background-color: #191919;
+    color: #eee;
     display: flex;
     flex-direction: column;
     box-shadow: 1px 0px 24px 0px rgba(66, 68, 90, 1);
@@ -16,11 +16,11 @@ nav {
     .navigation {
         display: none;
         margin-bottom: 5vh;
-        padding: 20px;
+        padding: 20px 8px;
         display: none;
 
         .navigation-el {
-            color: #fff;
+            color: #eee;
         }
     }
     
@@ -57,25 +57,33 @@ nav {
             flex-direction: column;
 
             & .navigation-el {
-                font-size: 1.6rem;
-                line-height: 5rem;
-                text-transform: uppercase;
+                font-size: 1.4rem;
+                line-height: 4rem;
+                font-weight: 300;
                 cursor: pointer;
+                display: flex;
+                align-items: center;
     
                 &:hover {
                     font-weight: bold;
+                }
+
+                i {
+                    width: 18px;
+                    font-size: 1.4rem;
+                    margin-right: 1rem;                    
                 }
             }
         }
 
         .banner {
             margin: 0 auto;
-            height: 64px;
-            font-size: 3rem;
+            height: 40px;
+            font-size: 2.2rem;
             font-family: 'Permanent Marker', cursive;
             font-weight: bold;
             display: block;
-            border-bottom: 1px solid #6b84d1;
+            border-bottom: 1px solid #2a2a2a;
             width: 90%;
             text-align: center;
     
@@ -93,8 +101,17 @@ nav {
 
     @media(min-width: 1200px) {
 
-        .navigation > .navigation-el {
-            font-size: 2rem;
+        .navigation {
+            padding: 20px;            
+
+            .navigation-el {
+                font-size: 1.6rem;
+                line-height: 4.2rem;
+
+                i {
+                    margin-right: 1.4rem;
+                }
+            }
         }
     }
 }  

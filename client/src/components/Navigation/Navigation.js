@@ -8,6 +8,7 @@ const toggleMenu = () => {
     document.querySelector(".fa-bars").classList.toggle("hidden");
     document.querySelector(".fa-times").classList.toggle("hidden");
     document.querySelector("aside").classList.toggle("show");
+    document.body.classList.toggle('lock-scroll');
 }
 
 const Navigation = () => {
@@ -15,10 +16,7 @@ const Navigation = () => {
     const userSignin = useSelector(state => state.userSignin);
     const { userInfo } = userSignin;
 
-    const dispatch = useDispatch();
-
     const signoutHandler = () => {
-        //dispatch(signout());
         window.location.reload(true);
     }
 
@@ -27,16 +25,18 @@ const Navigation = () => {
     }, []);
 
     return (
+        userInfo ?
         <nav>
             <div className="banner">MyTeam</div>
             <div className="navigation">
-                <Link to="/" className="navigation-el">Dashboard</Link>
-                <Link to="/projects" className="navigation-el">Projects</Link>
-                <Link to="/tasks" className="navigation-el">Tasks</Link>
-                <Link to="/reports" className="navigation-el">Reports</Link>
-                <Link to="/manage" className="navigation-el">Manage</Link>
-                <Link to="/account" className="navigation-el">Account</Link>
-                <Link to="/" onClick={signoutHandler} className="navigation-el">Sign Out</Link>
+                <Link to="/" className="navigation-el"><i class="fas fa-chart-bar"></i> Dashboard</Link>
+                <Link to="/projects" className="navigation-el"><i class="fas fa-layer-group"></i> Projects</Link>
+                <Link to="/tasks" className="navigation-el"><i class="fas fa-tasks"></i> Tasks</Link>
+                <Link to="/tasks" className="navigation-el"><i class="fas fa-handshake"></i> Clients</Link>
+                <Link to="/reports" className="navigation-el"><i class="fas fa-inbox"></i> Reports</Link>
+                <Link to="/manage" className="navigation-el"><i class="fas fa-cog"></i> Manage</Link>
+                <Link to="/account" className="navigation-el"><i class="fas fa-user-cog"></i> Account</Link>
+                <Link to="/" onClick={signoutHandler} className="navigation-el"><i class="fas fa-sign-out-alt"></i> Sign Out</Link>
             </div>   
             <div className="menu-burger">
                 <div className="banner-burger">MyTeam</div>
@@ -48,6 +48,8 @@ const Navigation = () => {
             </div>
             
         </nav>
+        :
+        <></>
     )
 }
 

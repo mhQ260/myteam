@@ -8,7 +8,7 @@ const ManagePage = () => {
             <div className="manage-header"><h1>Manage Panel</h1></div>
             <div className="manage-container">
                 <Link to="/manage/users" className="navigation-el"><div><i class="fas fa-users"></i> Users</div></Link>
-                <Link to="/manage/projects" className="navigation-el"><div><i class="fas fa-project-diagram"></i> Projects</div></Link>
+                <Link to="/manage/projects" className="navigation-el"><div><i class="fas fa-layer-group"></i> Projects</div></Link>
                 <Link to="/manage/clients" className="navigation-el"><div><i class="fas fa-handshake"></i> Clients</div></Link>
                 <Link to="/manage/stats" className="navigation-el"><div><i class="fas fa-chart-bar"></i> Stats</div></Link>
                 <Link to="/manage/settings" className="navigation-el"><div><i class="fas fa-cogs"></i> Settings</div></Link>

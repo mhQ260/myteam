@@ -11,6 +11,11 @@ const Content = () => {
 
     return (
         <main>
+           <div className="header">
+               <i class="fas fa-bars"></i>
+               <div><i class="fas fa-user-circle"></i> Matty Test</div>
+               
+            </div>
            <div className="main-wrapper">
                 {userInfo ?
                     <>
