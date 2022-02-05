@@ -71,7 +71,7 @@ const UsersManagePage = () => {
 
     const submitFormHandler = (e) => {
         e.preventDefault();
-        dispatch(saveUser({ _id: id, login, email, password, firstName, lastName, isAdmin }))
+        dispatch(saveUser({ _id: id, login, email, password, firstName, lastName, isAdmin, adminPanel: true, isArchive: false }))
     }
 
     const submitProjectsFormHandler = (e) => {

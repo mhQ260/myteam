@@ -21,19 +21,14 @@
                 }
 
                 button {
-                    float: left;
-                    height: 30px;
-                    width: 24px;
-                    padding: 3px;
-                    background: #0974bb;
-                    color: #fff;
-                    font-size: 1.2rem;
-                    border: 1px solid grey;
-                    border-left: none;
-                    cursor: pointer;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                font-size: 1.2rem;
+                line-height: 30px;
+                padding: 0 5px;
+                background: #0974bb;
+                color: #fff;
+                border: none;
+                font-weight: bold;
+                letter-spacing: .5px;
 
                     i {
                         font-size: 1.6rem;

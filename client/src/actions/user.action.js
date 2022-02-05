@@ -1,5 +1,6 @@
 import { 
     USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNIN_FAILURE,
+    USER_GET_REQUEST, USER_GET_SUCCESS, USER_GET_FAILURE,
     USER_SAVE_REQUEST, USER_SAVE_SUCCESS, USER_SAVE_FAILURE,
     USERS_GET_REQUEST, USERS_GET_SUCCESS, USERS_GET_FAILURE,
  } from '../constans';
@@ -11,7 +12,6 @@ import { userSave } from '../reducers/user.reducer';
 export const signin = (login, password) => async (dispatch) => {
     dispatch({ type: USER_SIGNIN_REQUEST, payload: { login, password } });
     try {
-        console.log("Jestem tutaj")
         const { data } = await axios.post('/api/users/signin', { login, password });
         dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
         Cookie.set('userInfo', JSON.stringify(data));
@@ -40,10 +40,12 @@ export const saveUser = (user) => async (dispatch, getState) => {
                 }
             });
             dispatch({ type: USER_SAVE_SUCCESS, payload: data });
+            alert("Updated!");
         }
 
     } catch (error) {
         dispatch({ type: USER_SAVE_FAILURE, payload: error.message });
+        alert("Wrong password, please try again!");
     }
 }
 
@@ -54,5 +56,15 @@ export const listUsers = () => async (dispatch) => {
         dispatch({ type: USERS_GET_SUCCESS, payload: data });
     } catch (error) {
         dispatch({ type: USERS_GET_FAILURE, payload: error.msg });
+    }
+}
+
+export const getUser = (id) => async (dispatch) => {
+    try {
+        dispatch({ type: USER_GET_REQUEST });
+        const { data } = await axios.get('/api/users/' + id);
+        dispatch({ type: USER_GET_SUCCESS, payload: data });
+    } catch (error) {
+        dispatch({ type: USER_GET_FAILURE, payload: error.msg });
     }
 }

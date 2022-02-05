@@ -1,5 +1,6 @@
 import {
     USER_SIGNIN_REQUEST, USER_SIGNIN_SUCCESS, USER_SIGNIN_FAILURE,
+    USER_GET_REQUEST, USER_GET_SUCCESS, USER_GET_FAILURE,
     USER_SAVE_REQUEST, USER_SAVE_SUCCESS, USER_SAVE_FAILURE,
     USERS_GET_REQUEST, USERS_GET_SUCCESS, USERS_GET_FAILURE,
 } from '../constans';
@@ -56,6 +57,22 @@ export const usersList = (state = initialState, action) => {
             return { loading: false, users: action.payload };
 
         case USERS_GET_FAILURE:
+            return {loading: false, error: action.payload };
+
+        default:
+            return state;
+    }
+}
+
+export const userGet = (state = initialState, action) => {
+    switch(action.type) {
+        case USER_GET_REQUEST:
+            return { loading: true, user: [] };
+
+        case USER_GET_SUCCESS:
+            return { loading: false, user: action.payload };
+
+        case USER_GET_FAILURE:
             return {loading: false, error: action.payload };
 
         default:

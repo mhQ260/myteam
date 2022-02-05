@@ -2,10 +2,11 @@ import express from 'express';
 import User from '../models/user.model';
 import { getToken, isAuth, isAdmin } from '../util';
 import bcrypt from 'bcrypt';
+import e from 'express';
 
 const router = express.Router();
 
-router.post('/', isAuth, isAdmin, async (req, res) => {
+router.post('/', async (req, res) => {
 
     const user = new User({
         login: req.body.login,
@@ -37,22 +38,45 @@ router.post('/', isAuth, isAdmin, async (req, res) => {
     
 })
 
-router.put('/:id', isAuth, isAdmin, async (req,res) => {
+router.put('/:id', async (req,res) => {
     const userId = req.params.id;
     const user = await User.findById(userId);
-    if(user) {
-        user.login = req.body.login;
-        user.email = req.body.email;
-        user.password = req.body.password;
-        user.firstName = req.body.firstName;
-        user.lastName = req.body.lastName;
-        user.isAdmin = req.body.isAdmin;
-        user.isArchive = req.body.isArchive;
-        const updatedUser = await user.save();
-        if(updatedUser) { 
-            return res.status(200).send({ msg: 'User has been updated', data: updatedUser });
-        }
+
+    if(req.body.adminPanel === true) {
+        if(user) {
+            user.login = req.body.login;
+            user.email = req.body.email;
+            user.password = req.body.password;
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;
+            user.isAdmin = req.body.isAdmin;
+            user.isArchive = req.body.isArchive;
+            const updatedUser = await user.save();
+
+            if(updatedUser) { 
+                return res.status(200).send({ msg: 'User has been updated', data: updatedUser });
+            }
+        } 
+    } 
+
+    if(req.body.adminPanel === false) {
+        const compare = await bcrypt.compare(req.body.oldPassword, user.password);
+        if(compare) {
+            user.login = req.body.login;
+            user.email = req.body.email;
+            user.password = req.body.password;
+            user.firstName = req.body.firstName;
+            user.lastName = req.body.lastName;
+            user.isAdmin = req.body.isAdmin;
+            user.isArchive = req.body.isArchive;
+            const updatedUser = await user.save();
+
+            if(updatedUser) { 
+                return res.status(200).send({ msg: 'User has been updated', data: updatedUser });
+            }
+        }  
     }
+
     return res.status(500).send({ msg: 'Error in updating user!' });
 })
 
@@ -78,6 +102,12 @@ router.get('/createadmin', async (req, res) => {
 router.get('/', async (req, res) => {
     const users = await User.find({});
     res.send(users);
+})
+
+router.get('/:id', async (req, res) => {
+    const userId = req.params.id;
+    const user = await User.findById(userId);
+    res.send(user);
 })
 
 router.post('/signin', async (req, res) => {
