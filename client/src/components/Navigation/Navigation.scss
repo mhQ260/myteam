@@ -51,10 +51,15 @@ nav {
     }    
 
     @media(min-width: 900px) {
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 16%;
+        position: fixed;
 
         .navigation {
             display: flex;
-            flex-direction: column;
+            flex-direction: column;            
 
             & .navigation-el {
                 font-size: 1.4rem;
@@ -100,6 +105,7 @@ nav {
     }
 
     @media(min-width: 1200px) {
+        width: 14%;
 
         .navigation {
             padding: 20px;            

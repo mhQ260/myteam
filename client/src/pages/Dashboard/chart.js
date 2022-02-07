@@ -5,28 +5,46 @@ import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const DoughnutChart = ({tasksOvr, tasksFin}) => {
+const DoughnutChart = ({tasksOvr, tasksFin, tasksInPro}) => {
 
   const data = {
-    labels: [],
+    labels: ['My tasks', 'Finished', 'In Progress'],
   datasets: [
     {
       label: '% tasks',
-      data: [tasksOvr, tasksFin],
+      data: [tasksOvr, tasksFin, tasksInPro],
       backgroundColor: [
-        '#f7464a',
-        '#21a2ae',
+        '#3a3a3a',
+        '#1976d3',
+        '#64b5f6'
       ],
       borderColor: [
-        '#f7464a',
-        '#21a2ae',
+        '#fff',
+        '#fff',
+        '#fff'
       ],
+      borderWidth: 2,
     },
   ],
 
   }
 
-  return <Doughnut data={data} />;
+  const options = {
+    plugins: {
+      legend: {
+          labels: {
+              font: {
+                  size: 10
+              },
+          },
+          display: false,
+      },
+      title: {
+      }
+    },
+  }
+
+  return <Doughnut data={data} options={options} />;
 }
 
 export default DoughnutChart;

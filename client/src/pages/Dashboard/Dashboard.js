@@ -22,7 +22,7 @@ const DashboardPage = () => {
         };
     }, []);
 
-    const date = new Date().toLocaleString('default', {day: 'numeric', month: 'short', year: '2-digit' });
+    const date = new Date().toLocaleString('en-GB', {day: 'numeric', month: 'short', year: '2-digit' });
 
     const tasksCount = tasks.length;
 
@@ -55,14 +55,32 @@ const DashboardPage = () => {
         <>
             <div className="dashboard">
                 <div className="dashboard-header">
-                    <div><h2>Hello {userInfo.login}!</h2></div>
+                    <div><h2>Dashboard</h2></div>
                     <div><h2>Today, {date}</h2></div>
                 </div>
                 <div className="dashboard-container">
+                    <div className="dashboard-stats">
+                        <div className="stats-el">
+                            <div>15</div>
+                            <div>Total Users</div>
+                        </div>
+                        <div className="stats-el">
+                            <div>4</div>
+                            <div>Total Projects</div>
+                        </div>
+                        <div className="stats-el">
+                            <div>7</div>
+                            <div>Total Clients </div>
+                        </div>
+                        <div className="stats-el">
+                            <div>0 €</div>
+                            <div>Monthly Income</div>
+                        </div>
+                    </div>
                     <div className="dashboard-summary">
                         <div className="summary-diagram">
                             <p>{percTasks()}% tasks done</p>
-                            <div className="chart"><DoughnutChart tasksOvr={tasksCount} tasksFin={tasksFinished()}/></div>
+                            <div className="chart"><DoughnutChart tasksOvr={tasksCount} tasksFin={tasksFinished()} tasksInPro={tasksInProgress()} /></div>
                         </div>
                         <div className="summary-double">
                             <div>

@@ -21,6 +21,9 @@ font-family: 'Permanent Marker', cursive;*/
         font-family: 'Roboto', sans-serif;
         width: 100vw;
         min-height: 100vh;
+        -ms-overflow-style: none; 
+        scrollbar-width: none;
+        overflow-y: scroll; 
     }
 
     .show {
