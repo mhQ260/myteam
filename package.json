@@ -11,26 +11,26 @@
     "type": "git",
     "url": "git+https://github.com/mhudyx/myteam.git"
   },
-  "author": "MHDEV",
+  "author": "mhQ260",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mhudyx/fcs/issues"
+    "url": "https://github.com/mhudyx/myteam/issues"
   },
-  "homepage": "https://github.com/mhudyx/fcs#readme",
+  "homepage": "https://github.com/mhudyx/myteam#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.27",
-    "cors": "^2.8.5"
+    "mongoose": "^5.13.14"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.10.5",
     "@babel/node": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.15"
   }
 }
